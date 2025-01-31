@@ -36,8 +36,8 @@ productRouter
   })
   .post(async (req, res) => {
     try {
-      const { name, categoryId } = req.body; // Добавьте categoryId, если необходимо
-      const ball = await Ball.create({ name, categoryId });
+      const { type } = req.body;
+      const ball = await Ball.create({ type });
       return res.status(201).json(ball);
     } catch (error) {
       return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
@@ -57,8 +57,8 @@ productRouter
   })
   .post(async (req, res) => {
     try {
-      const { name, interfaceType, categoryId } = req.body; // Добавьте categoryId, если необходимо
-      const interfaceItem = await Interface.create({ name, interfaceType, categoryId });
+      const { type } = req.body;
+      const interfaceItem = await Interface.create({ type });
       return res.status(201).json(interfaceItem);
     } catch (error) {
       return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
@@ -78,8 +78,8 @@ productRouter
   })
   .post(async (req, res) => {
     try {
-      const { name, backgroundType, categoryId } = req.body; // Добавьте categoryId, если необходимо
-      const background = await Background.create({ name, backgroundType, categoryId });
+      const { type } = req.body;
+      const background = await Background.create({ type });
       return res.status(201).json(background);
     } catch (error) {
       return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
@@ -99,8 +99,8 @@ productRouter
   })
   .post(async (req, res) => {
     try {
-      const { name, soundType, categoryId } = req.body; // Добавьте categoryId, если необходимо
-      const sound = await Sound.create({ name, soundType, categoryId });
+      const { type } = req.body; 
+      const sound = await Sound.create({ type });
       return res.status(201).json(sound);
     } catch (error) {
       return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
