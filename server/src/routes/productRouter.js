@@ -1,101 +1,107 @@
 const express = require('express');
-const { Product } = require('../../db/models/');
+const { Skin, Ball, Interface, Background, Sound } = require('../../db/models/');
 const productRouter = express.Router();
 
-productRouter.route('/').get(async (req, res) => {
-  try {
-    const products = await Product.findAll();
-    return res.status(200).json(products);
-  } catch (error) {
-    return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
-  }
-});
-
+// Маршруты для Skin
 productRouter
-  .route('/sound')
+  .route('/skin')
   .get(async (req, res) => {
     try {
-      const products = await Product.findAll({ where: { category: 'sound' } });
-      return res.status(200).json(products);
+      const skins = await Skin.findAll();
+      return res.status(200).json(skins);
     } catch (error) {
       return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
     }
   })
   .post(async (req, res) => {
     try {
-      const { title, fileName, desc } = req.body;
-      const product = await Product.create({ title,category: 'sound', fileName, desc });
-      return res.status(200).json(product);
+      const { title } = req.body;
+      const skin = await Skin.create({ title });
+      return res.status(201).json(skin);
     } catch (error) {
       return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
     }
   });
 
+// Маршруты для Ball
+productRouter
+  .route('/ball')
+  .get(async (req, res) => {
+    try {
+      const balls = await Ball.findAll();
+      return res.status(200).json(balls);
+    } catch (error) {
+      return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
+    }
+  })
+  .post(async (req, res) => {
+    try {
+      const { name, categoryId } = req.body; // Добавьте categoryId, если необходимо
+      const ball = await Ball.create({ name, categoryId });
+      return res.status(201).json(ball);
+    } catch (error) {
+      return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
+    }
+  });
+
+// Маршруты для Interface
 productRouter
   .route('/interface')
   .get(async (req, res) => {
     try {
-      const products = await Product.findAll({ where: { category: 'interface' } });
-      return res.status(200).json(products);
+      const interfaces = await Interface.findAll();
+      return res.status(200).json(interfaces);
     } catch (error) {
       return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
     }
   })
   .post(async (req, res) => {
     try {
-      const { title, fileName, desc } = req.body;
-      const product = await Product.create({
-        title,
-        category: 'interface',
-        fileName,
-        desc,
-      });
-      return res.status(200).json(product);
+      const { name, interfaceType, categoryId } = req.body; // Добавьте categoryId, если необходимо
+      const interfaceItem = await Interface.create({ name, interfaceType, categoryId });
+      return res.status(201).json(interfaceItem);
     } catch (error) {
       return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
     }
   });
 
+// Маршруты для Background
 productRouter
-  .route('/environment')
+  .route('/background')
   .get(async (req, res) => {
     try {
-      const products = await Product.findAll({ where: { category: 'environment' } });
-      return res.status(200).json(products);
+      const backgrounds = await Background.findAll();
+      return res.status(200).json(backgrounds);
     } catch (error) {
       return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
     }
   })
   .post(async (req, res) => {
     try {
-      const { title, fileName, desc } = req.body;
-      const product = await Product.create({
-        title,
-        fileName,
-        desc,
-        category: 'environment',
-      });
-      return res.status(200).json(product);
+      const { name, backgroundType, categoryId } = req.body; // Добавьте categoryId, если необходимо
+      const background = await Background.create({ name, backgroundType, categoryId });
+      return res.status(201).json(background);
     } catch (error) {
       return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
     }
   });
 
+// Маршруты для Sound
 productRouter
-  .route('/entity')
+  .route('/sound')
   .get(async (req, res) => {
     try {
-      const products = await Product.findAll({ where: { category: 'entity' } });
-      return res.status(200).json(products);
+      const sounds = await Sound.findAll();
+      return res.status(200).json(sounds);
     } catch (error) {
       return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
     }
   })
   .post(async (req, res) => {
     try {
-      const { title, fileName, desc } = req.body;
-      const product = await Product.create({ title, category: 'entity', fileName, desc });
-      return res.status(200).json(product);
+      const { name, soundType, categoryId } = req.body; // Добавьте categoryId, если необходимо
+      const sound = await Sound.create({ name, soundType, categoryId });
+      return res.status(201).json(sound);
     } catch (error) {
       return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
     }
