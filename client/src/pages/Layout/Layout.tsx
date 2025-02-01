@@ -1,11 +1,11 @@
 //структура сайта
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router';
 import Navbar from '../../widgets/NavBar/NavBar';
 
 // подключаем в роутер провайдер
-export default function Layout():React.JSX.Element {
+export default function Layout(): React.JSX.Element {
   return (
     <Container>
       <Row>
