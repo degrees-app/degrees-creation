@@ -1,15 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { SkinType } from '../model/type';
+import { SoundType } from '../types/soundTypes';
+
 
 // Определите сервис с базовым URL и ожидаемыми конечными точками
-export const skinApiSlice = createApi({
-  reducerPath: 'skinsApi',
+export const soundApiSlice = createApi({
+  reducerPath: 'soundApi',
   baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
-  tagTypes: ['Skins'],
+  tagTypes: ['Sounds'],
   endpoints: (builder) => ({
-    getSkins: builder.query<SkinType[], void>({
-      query: () => '/skins',
-      providesTags: ['Skins'],
+    getSounds: builder.query<SoundType[], void>({
+      query: () => '/sounds',
+      providesTags: ['Sounds'],
     }),
     // getSkinById: builder.query<SkinType, SkinType['id']>({
     //   query: (id) => `skins/${String(id)}`,
@@ -18,4 +19,4 @@ export const skinApiSlice = createApi({
   }),
 });
 
-export const { useGetSkinsQuery } = skinApiSlice;
+export const { useGetSoundsQuery } = soundApiSlice;

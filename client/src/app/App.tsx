@@ -5,14 +5,13 @@ import RouterProvider from './router/RouterProvaider';
 
 function App(): React.JSX.Element {
   return (
-    // Обеспечиваем поддержку маршрутов
-    <Provider store={store}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Provider store={store}>
         {/* Делаем Redux store доступным для всего приложения */}
         {/* Настраиваем маршруты приложения */}
         <RouterProvider />
-      </BrowserRouter>
-    </Provider>
+      </Provider>
+    </BrowserRouter>
   );
 }
 

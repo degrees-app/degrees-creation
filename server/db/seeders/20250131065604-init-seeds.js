@@ -47,16 +47,16 @@ module.exports = {
     ]);
     await queryInterface.bulkInsert('Sounds', [
       {
-        type: 'Sound1',
+        type: '/sounds/zvuk1.mp3',
       },
       {
-        type: 'Sound2',
+        type: '/sounds/zvuk2.mp3',
       },
       {
-        type: 'Sound3',
+        type: '/sounds/zvuk3.mp3',
       },
       {
-        type: 'Sound4',
+        type: '/sounds/zvuk4.mp3',
       },
     ]);
     await queryInterface.bulkInsert('Backgrounds', [

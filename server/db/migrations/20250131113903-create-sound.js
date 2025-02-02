@@ -13,9 +13,6 @@ module.exports = {
       type: {
         type: Sequelize.STRING,
       },
-      soundType: {
-        type: Sequelize.STRING,
-      },
       createdAt: {
         type: Sequelize.DATE,
       },

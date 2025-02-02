@@ -13,9 +13,6 @@ module.exports = {
       type: {
         type: Sequelize.STRING,
       },
-      backgroundType: {
-        type: Sequelize.STRING,
-      },
       createdAt: {
         type: Sequelize.DATE,
       },

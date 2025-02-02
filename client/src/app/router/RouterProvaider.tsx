@@ -7,7 +7,8 @@ import MainPage from '../../entities/MainPage/MainPage';
 import { BollPage } from '../../pages/RedactorPage/BollPage/BollPage';
 import { InterfacePage } from '../../pages/RedactorPage/InterfacePage/InterfacePage';
 import { BackroundPage } from '../../pages/RedactorPage/BackrounderPage/BackroundPage';
-import { SoundPage } from '../../pages/RedactorPage/SoundPage/SoundPage';
+import SoundPage from '../../pages/RedactorPage/SoundPage/SoundPage';
+
 
 export default function RouterProvider(): React.JSX.Element {
   return (
