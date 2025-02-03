@@ -1,33 +1,35 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { BackroundState, TextStyle } from "../types/backroundTypes";
-import { fetchInitialText } from "../model/backroundThunk";
+import { fetchBackgroundData, saveBackgroundData } from "../model/backroundThunk";
 
 const initialState: BackroundState = {
-  text: "Привет, мир!",
   textStyle: {
-    fontSize: 16,
-    fontWeight: "normal",
-    color: "#000000",
+    fontFamily: "Arial",
+    color: "#ffffff",
   },
+  degrees: "degrees",
+  number1: "1,235",
+  number2: "34",
 };
 
 const backroundSlice = createSlice({
   name: "backround",
   initialState,
   reducers: {
-    setText: (state, action: PayloadAction<string>) => {
-      state.text = action.payload;
-    },
     setTextStyle: (state, action: PayloadAction<Partial<TextStyle>>) => {
       state.textStyle = { ...state.textStyle, ...action.payload };
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchInitialText.fulfilled, (state, action) => {
-      state.text = action.payload;
-    });
+    builder
+      .addCase(fetchBackgroundData.fulfilled, (state, action) => {
+        return { ...state, ...action.payload };
+      })
+      .addCase(saveBackgroundData.fulfilled, () => {
+        console.log("Данные успешно сохранены в БД");
+      });
   },
 });
 
-export const { setText, setTextStyle } = backroundSlice.actions;
+export const { setTextStyle } = backroundSlice.actions;
 export default backroundSlice.reducer;

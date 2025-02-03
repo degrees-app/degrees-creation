@@ -13,6 +13,9 @@ module.exports = {
       type: {
         type: Sequelize.STRING,
       },
+      url: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         type: Sequelize.DATE,
       },

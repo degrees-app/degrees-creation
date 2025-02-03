@@ -1,18 +1,28 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../../../app/store";
+import { BackroundState } from "../types/backroundTypes";
 
-const fetchInitialTextFromServer = async (): Promise<string> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve("Загруженный текст из API");
-    }, 1000);
-  });
-};
+const API_URL = "http://localhost:5000/api/backround";
 
-export const fetchInitialText = createAsyncThunk<string, void, { state: RootState }>(
-  "backround/fetchInitialText",
+// Получение данных из БД
+export const fetchBackgroundData = createAsyncThunk(
+  "backround/fetchBackgroundData",
   async () => {
-    const response = await fetchInitialTextFromServer();
-    return response;
+    const response = await fetch(API_URL);
+    return await response.json();
   }
 );
+
+// Сохранение данных в БД
+export const saveBackgroundData = createAsyncThunk<
+  void,
+  BackroundState,
+  { state: RootState }
+>("backround/saveBackgroundData", async (data) => {
+  await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+});
+

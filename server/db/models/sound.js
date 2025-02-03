@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   Sound.init(
     {
       type: DataTypes.STRING,
+      url: DataTypes.STRING,
     },
     {
       sequelize,

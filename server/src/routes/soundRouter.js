@@ -3,7 +3,7 @@ const { Sound } = require('../../db/models');
 const soundRouter = express.Router();
 
 // Маршруты для Sound
-soundRouter.route('/sound').get(async (req, res) => {
+soundRouter.route('/').get(async (req, res) => {
   try {
     const sounds = await Sound.findAll();
     return res.status(200).json(sounds);
