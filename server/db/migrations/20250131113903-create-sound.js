@@ -13,7 +13,7 @@ module.exports = {
       type: {
         type: Sequelize.STRING,
       },
-      soundType: {
+      url: {
         type: Sequelize.STRING,
       },
       createdAt: {

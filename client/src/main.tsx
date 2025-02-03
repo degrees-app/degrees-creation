@@ -3,6 +3,4 @@ import App from './app/App.tsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './shared/ui/globalStyles.css'
 
-createRoot(document.getElementById('root')!).render(
-    <App />
-);
+createRoot(document.getElementById('root')!).render(<App />);

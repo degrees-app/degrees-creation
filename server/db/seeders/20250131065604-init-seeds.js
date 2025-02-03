@@ -8,27 +8,27 @@ module.exports = {
         title: 'Ball',
       },
       {
-        title: 'Interface',
+        title: 'Ball',
       },
       {
-        title: 'Background',
+        title: 'Ball',
       },
       {
-        title: 'Sound',
+        title: 'Ball',
       },
     ]);
     await queryInterface.bulkInsert('Balls', [
       {
-        type: 'Ball',
+        type: 'Color1',
       },
       {
-        type: 'Ball1',
+        type: 'Color2',
       },
       {
-        type: 'Ball2',
+        type: 'Color3',
       },
       {
-        type: 'Ball3',
+        type: 'Color4',
       },
     ]);
     await queryInterface.bulkInsert('Interfaces', [
@@ -47,16 +47,20 @@ module.exports = {
     ]);
     await queryInterface.bulkInsert('Sounds', [
       {
-        type: 'Sound1',
+        type: 'sound 1',
+        url: '/sounds/zvuk1.mp3',
       },
       {
-        type: 'Sound2',
+        type: 'sound 2',
+        url: '/sounds/zvuk2.mp3',
       },
       {
-        type: 'Sound3',
+        type: 'sound 3',
+        url: '/sounds/zvuk3.mp3',
       },
       {
-        type: 'Sound4',
+        type: 'sound 4',
+        url: '/sounds/zvuk4.mp3',
       },
     ]);
   },

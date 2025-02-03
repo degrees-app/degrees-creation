@@ -7,7 +7,7 @@ import MainPage from '../../entities/MainPage/MainPage';
 import { BallPage } from '../../pages/RedactorPage/BallPage/BallPage';
 import { InterfacePage } from '../../pages/RedactorPage/InterfacePage/InterfacePage';
 import { BackroundPage } from '../../pages/RedactorPage/BackrounderPage/BackroundPage';
-import { SoundPage } from '../../pages/RedactorPage/SoundPage/SoundPage';
+import SoundPage from '../../pages/RedactorPage/SoundPage/SoundPage';
 import BackroundSkinsPage from '../../pages/SkinsPage/BackroundSkinsPage/BackroundSkinsPage';
 import InterfaceSkinsPage from '../../pages/SkinsPage/InterfaceSkinsPage/InterfaceSkinsPage';
 import BallSkinsPage from '../../pages/SkinsPage/BallSkinsPage/BallSkinsPage';

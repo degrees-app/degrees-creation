@@ -1,7 +1,6 @@
 import { z } from 'zod';
 
-export const soundSchema = z.object({
+export const ballSchema = z.object({
   id: z.number(),
   type: z.string(),
-  url: z.string(),
 });
