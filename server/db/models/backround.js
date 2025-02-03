@@ -3,8 +3,12 @@
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Backround extends Model {
+<<<<<<< HEAD
     static associate({ Skin }) {
       this.hasMany(Skin, { foreignKey: '' });
+=======
+    static associate(models) {
+>>>>>>> dev
     }
   }
 
