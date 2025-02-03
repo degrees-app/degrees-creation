@@ -1,11 +1,14 @@
+
 import { BackroundForm } from '../../../widgets/BackroundForm/BackroundForm';
 import { CanvasPhoneFrame } from '../../../entities/backround/ui/CanvasPhoneFlam';
 import { Box } from '@mui/material';
+
 
 export const BackroundPage = () => {
   return (
     <Box
       sx={{
+
         display: 'flex',
         gap: 3,
         padding: 3,
@@ -16,6 +19,7 @@ export const BackroundPage = () => {
     >
       <BackroundForm />
       <CanvasPhoneFrame />
+
     </Box>
   );
 };
