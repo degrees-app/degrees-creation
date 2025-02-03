@@ -59,24 +59,10 @@ module.exports = {
         type: 'Sound4',
       },
     ]);
-    await queryInterface.bulkInsert('Backgrounds', [
-      {
-        type: 'Backgrounds1',
-      },
-      {
-        type: 'Backgrounds2',
-      },
-      {
-        type: 'Backgrounds3',
-      },
-      {
-        type: 'Backgrounds4',
-      },
-    ]);
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Backgrounds', null, {});
+    await queryInterface.bulkDelete('Backrounds', null, {});
     await queryInterface.bulkDelete('Sounds', null, {});
     await queryInterface.bulkDelete('Interfaces', null, {});
     await queryInterface.bulkDelete('Balls', null, {});

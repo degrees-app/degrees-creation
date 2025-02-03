@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import bollReducer from '../entities/boll/model/bollSlice'
+import ballReducer from '../entities/ball/model/ballSlice'
 import interfaceReducer from '../entities/interface/model/interfaceSlice'
 import backroundReducer from '../entities/backround/model/backroundSlice'
 import soundReducer from '../entities/sound/model/soundSlice'
 
 export const store = configureStore({
   reducer: {
-    boll: bollReducer,
+    ball: ballReducer,
     interface: interfaceReducer,
     backround: backroundReducer,
     sound: soundReducer

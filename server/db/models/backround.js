@@ -3,21 +3,24 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class Background extends Model {
+  class Backround extends Model {
     static associate({ Skins }) {
       this.hasMany(Skins, { foreignKey: '' });
     }
   }
 
-  Background.init(
+  Backround.init(
     {
-      type: DataTypes.STRING,
+      id:  DataTypes.INTEGER,
+      image: DataTypes.TEXT,
+      color:  DataTypes.STRING, 
+      fontFamily:  DataTypes.STRING,
     },
     {
       sequelize,
-      modelName: 'Background',
+      modelName: 'Backrounds',
     },
   );
 
-  return Background;
+  return Backround;
 };

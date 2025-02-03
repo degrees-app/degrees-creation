@@ -2,7 +2,7 @@ import { BrowserRouter } from 'react-router';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import RouterProvider from './router/RouterProvaider';
-
+// import '../shared/ui/globalStyles.css'
 function App(): React.JSX.Element {
   return (
     // Обеспечиваем поддержку маршрутов
