@@ -4,7 +4,7 @@ const interfaceRouter = express.Router();
 
 // Маршруты для Interface
 interfaceRouter
-  .route('/interface')
+  .route('/')
   .get(async (req, res) => {
     try {
       const interfaces = await interface.findAll();

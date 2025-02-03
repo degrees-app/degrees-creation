@@ -4,7 +4,7 @@ const backgroundRouter = express.Router();
 
 // Маршруты для Background
 backgroundRouter
-  .route('/background')
+  .route('/')
   .get(async (req, res) => {
     try {
       const backgrounds = await background.findAll();

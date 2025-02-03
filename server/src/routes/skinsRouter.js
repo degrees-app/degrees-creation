@@ -3,7 +3,7 @@ const { Skin } = require('../../db/models');
 const skinsRouter = express.Router();
 
 // Маршруты для Skin
-skinsRouter.route('/skins').get(async (req, res) => {
+skinsRouter.route('/').get(async (req, res) => {
   try {
     const skins = await Skin.findAll();
     return res.status(200).json(skins);
