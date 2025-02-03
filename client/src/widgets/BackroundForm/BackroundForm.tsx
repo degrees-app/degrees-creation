@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../app/store";
 import { setTextStyle } from "../../entities/backround/model/backroundSlice";
-import { saveBackgroundData } from "../../entities/backround/model/backroundThunk";
+// import { saveBackgroundData } from "../../entities/backround/model/backroundThunk";
 import { Box, Button, Select, MenuItem, InputLabel } from "@mui/material";
 
 // Доступные стили шрифтов
@@ -11,7 +11,7 @@ const fontFamilies = [
   "Georgia",
   "Times New Roman",
   "Verdana",
-  "Comic Sans MS", // Новые варианты шрифтов
+  "Comic Sans MS",
   "Impact",
   "Lucida Console",
   "Tahoma",
@@ -30,8 +30,38 @@ export const BackroundForm = () => {
     dispatch(setTextStyle({ color: event.target.value }));
   };
 
-  const handleSave = () => {
-    dispatch(saveBackgroundData(textStyle));
+  // 💾 Функция сохранения (canvas + стили)
+  const handleSave = async () => {
+    const canvas = document.querySelector("canvas");
+    if (!canvas) {
+      alert("Canvas не найден!");
+      return;
+    }
+
+    // Преобразуем canvas в base64
+    const imageBase64 = canvas.toDataURL("image/png");
+
+    // Отправляем на сервер
+    try {
+      const response = await fetch("/api/backround/save", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          image: imageBase64,
+          fontFamily: textStyle.fontFamily,
+          color: textStyle.color,
+        }),
+      });
+
+      if (!response.ok) throw new Error("Ошибка при сохранении");
+
+      alert("Изображение сохранено!");
+    } catch (error) {
+      console.error("Ошибка:", error);
+      alert("Не удалось сохранить изображение");
+    }
   };
 
   return (
@@ -42,7 +72,7 @@ export const BackroundForm = () => {
         value={textStyle.fontFamily}
         onChange={handleFontChange}
         fullWidth
-        sx={{ mt: 1, backgroundColor: "white", color: "black" }} // Поле выбора шрифта
+        sx={{ mt: 1, backgroundColor: "white", color: "black" }}
       >
         {fontFamilies.map((font) => (
           <MenuItem key={font} value={font}>

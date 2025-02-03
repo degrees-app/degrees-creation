@@ -6,7 +6,6 @@ export const CanvasPhoneFrame = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const { textStyle, degrees, number1, number2 } = useSelector((state: RootState) => state.backround);
 
-  // 🎨 Функция для рисования на canvas
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -55,46 +54,7 @@ export const CanvasPhoneFrame = () => {
     ctx.fillRect(canvas.width * 0.1, canvas.height * 0.75, canvas.width * 0.8, 2);
   }, [textStyle, degrees, number1, number2]); // Обновляем canvas при изменении состояния
 
-  // 💾 Функция для сохранения изображения в БД
-  const saveToDatabase = async () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    // Преобразуем canvas в base64
-    const imageBase64 = canvas.toDataURL("image/png");
-
-    // Отправляем данные на сервер
-    try {
-      const response = await fetch("http://localhost:5000/api/saveImage", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          image: imageBase64,
-          fontFamily: textStyle.fontFamily,
-          color: textStyle.color,
-        }),
-      });
-
-      if (!response.ok) throw new Error("Ошибка при сохранении");
-
-      alert("Изображение сохранено!");
-    } catch (error) {
-      console.error("Ошибка:", error);
-      alert("Не удалось сохранить изображение");
-    }
-  };
-
   return (
-    <div style={{ textAlign: "center" }}>
-      {/* Canvas для рисования */}
-      <canvas ref={canvasRef} width={300} height={600} style={{ borderRadius: "40px", border: "2px solid white" }} />
-      
-      {/* Кнопка для сохранения в БД */}
-      <button onClick={saveToDatabase} style={{ marginTop: "10px", padding: "10px", cursor: "pointer" }}>
-        Сохранить
-      </button>
-    </div>
+    <canvas ref={canvasRef} width={300} height={600} style={{ borderRadius: "40px", border: "2px solid white" }} />
   );
 };

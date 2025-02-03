@@ -10,13 +10,6 @@ export default function RedactorPage() {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, padding: 3 }}>
-      {/* Заголовок страницы */}
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Typography variant="h6" textAlign="left" sx={{ flexGrow: 1 }}>
-          redactor.
-        </Typography>
-      </Box>
-
       {/* Панель навигации */}
       <Box sx={{ display: 'flex', justifyContent: 'flex-start', gap: 2 }}>
         <Typography

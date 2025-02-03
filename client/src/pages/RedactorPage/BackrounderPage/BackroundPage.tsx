@@ -1,5 +1,5 @@
 import { BackroundForm } from "../../../widgets/BackroundForm/BackroundForm";
-import { PhoneFlam } from "../../../entities/backround/ui/CanvasPhoneFlam";
+import { CanvasPhoneFrame} from "../../../entities/backround/ui/CanvasPhoneFlam";
 import { Box } from "@mui/material";
 
 export const BackroundPage = () => {
@@ -15,7 +15,7 @@ export const BackroundPage = () => {
       }}
     >
       <BackroundForm />
-      <PhoneFlam />
+      <CanvasPhoneFrame />
     </Box>
   );
 };

@@ -1,25 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-const ImageGallery = () => {
-  const [images, setImages] = useState([]);
+export const BackroundSkinsPage = () => {
+  const [backrounds, setBackrounds] = useState<
+    { image: string; fontFamily: string; color: string; }[]
+  >([]);
 
   useEffect(() => {
-    const fetchImages = async () => {
-      const response = await fetch('/api/images');
+    const fetchBackrounds = async () => {
+      const response = await fetch("/api/backround/getAll");
       const data = await response.json();
-      setImages(data);
+      setBackrounds(data);
     };
 
-    fetchImages();
+    fetchBackrounds();
   }, []);
 
   return (
     <div>
-      <h1>Галерея изображений</h1>
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        {images.map((image) => (
-          <div key={image.id} style={{ margin: '10px' }}>
-            <img src={image.path} alt="Saved" style={{ width: '200px', height: 'auto' }} />
+      <h2>Сохраненные фоны</h2>
+      <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+        {backrounds.map((bg, index) => (
+          <div key={index} style={{ textAlign: "center" }}>
+            <img src={bg.image} alt="Saved" width={300} height={600} style={{ borderRadius: "40px" }} />
+            <p style={{ fontFamily: bg.fontFamily, color: bg.color }}>
+              Шрифт: {bg.fontFamily}, Цвет: {bg.color}
+            </p>
           </div>
         ))}
       </div>
@@ -27,4 +32,4 @@ const ImageGallery = () => {
   );
 };
 
-export default ImageGallery;
+

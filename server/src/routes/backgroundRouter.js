@@ -1,26 +1,28 @@
 const express = require('express');
-const background = require('../../db/models/background');
-const backgroundRouter = express.Router();
+const backroundRouter = express.Router();
+const { Backround } = require('../../db/models');
 
-// Маршруты для Background
-backgroundRouter
-  .route('/')
-  .get(async (req, res) => {
-    try {
-      const backgrounds = await background.findAll();
-      return res.status(200).json(backgrounds);
-    } catch (error) {
-      return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
-    }
-  })
-  .post(async (req, res) => {
-    try {
-      const { type } = req.body;
-      const back = await background.create({ type });
-      return res.status(201).json(back);
-    } catch (error) {
-      return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
-    }
-  });
 
-  module.exports = backgroundRouter;
+// Сохранение изображения с параметрами
+backroundRouter.post('/save', async (req, res) => {
+  try {
+    const { image, fontFamily, color } = req.body;
+    const newBackround = await Backround.create({ image, fontFamily, color });
+    res.json(newBackround);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Ошибка сохранения' });
+  }
+});
+
+// Получение всех изображений
+backroundRouter.get('/get', async (req, res) => {
+  try {
+    const backround = await Backround.findAll();
+    res.json(backround);
+  } catch (error) {
+    res.status(500).json({ error: 'Ошибка получения данных' });
+  }
+});
+
+module.exports = backroundRouter;
