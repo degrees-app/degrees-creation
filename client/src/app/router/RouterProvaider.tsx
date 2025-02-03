@@ -5,11 +5,11 @@ import RedactorPage from '../../pages/RedactorPage/RedactorPage';
 import SkinsPage from '../../pages/SkinsPage/SkinsPage';
 import MainPage from '../../entities/MainPage/MainPage';
 import { InterfacePage } from '../../pages/RedactorPage/InterfacePage/InterfacePage';
-import { BackroundPage } from '../../pages/RedactorPage/BackrounderPage/BackroundPage';
+import { BackroundPage } from '../../pages/BackrounderPage/BackroundPage';
 import SoundPage from '../../pages/RedactorPage/SoundPage/SoundPage';
 import BackroundSkinsPage from '../../pages/SkinsPage/BackroundSkinsPage/BackroundSkinsPage';
 import InterfaceSkinsPage from '../../pages/SkinsPage/InterfaceSkinsPage/InterfaceSkinsPage';
-import BallPage from '../../pages/RedactorPage/BallPage/BallPage';
+import BallPage from '../../pages/BallPage/BallPage';
 
 export default function RouterProvider(): React.JSX.Element {
   return (
