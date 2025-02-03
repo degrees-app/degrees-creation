@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+import React from 'react';
+
+export const BallPage = () => {
+  return <div>BallPage</div>;
+};
+=======
 //главная
 import React from 'react';
 import { Col } from 'react-bootstrap';
@@ -27,3 +34,4 @@ export default function BallPage(): React.JSX.Element {
     </div>
   );
 }
+>>>>>>> dev

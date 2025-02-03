@@ -1,0 +1,83 @@
+/* globalStyles.css */
+.css-bxxc0u {
+    border: none !important; /* Убираем границы */
+}
+body {
+    background-color: black !important; /* Черный фон */
+    color: rgb(19, 15, 15) !important; /* Белый текст */
+    margin: 0 !important; /* Убираем отступы по умолчанию */
+    font-family: Arial, sans-serif !important; /* Устанавливаем шрифт */
+  }
+  
+  a {
+    color: rgb(11, 7, 7); /* Цвет ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
+    position: relative; /* Для абсолютного позиционирования псевдоэлемента */
+  }
+  
+  a::after {
+    content: ''; /* Создаем пустой контент для псевдоэлемента */
+    display: block;
+    width: 0; /* Начальная ширина */
+    height: 2px; /* Высота подчеркивания */
+    background: rgb(243, 236, 236); /* Цвет подчеркивания */
+    transition: width 0.3s ease; /* Плавный переход ширины */
+    position: absolute; /* Абсолютное позиционирование */
+    left: 0; /* Сдвигаем влево */
+    bottom: -2px; /* Располагаем под текстом */
+  }
+  
+  a:hover::after {
+    width: 100%; /* Ширина подчеркивания при наведении */
+  }
+/* globalStyles.css */
+
+.link {
+    color: rgb(235, 231, 231); /* Цвет текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    position: relative; /* Для абсолютного позиционирования псевдоэлемента */
+    cursor: pointer; /* Курсор указателя для интерактивных элементов */
+    padding: 5px 0; /* Отступы для кликабельной области */
+}
+
+.link::after {
+    content: ''; /* Создаем пустой контент для псевдоэлемента */
+    display: block;
+    width: 0; /* Начальная ширина */
+    height: 2px; /* Высота подчеркивания */
+    background: rgb(242, 238, 238); /* Цвет подчеркивания */
+    transition: width 0.3s ease; /* Плавный переход ширины */
+    position: absolute; /* Абсолютное позиционирование */
+    left: 0; /* Сдвигаем влево */
+    bottom: -2px; /* Располагаем под текстом */
+}
+
+.link:hover::after {
+    width: 100%; /* Ширина подчеркивания при наведении */
+}
+
+/* Основные стили для Navbar */
+.navbar {
+    background-color: black !important; /* Черный фон */
+  }
+  
+  /* Стили для текста в Navbar */
+  .navbar .navbar-brand,
+  .navbar .nav-link {
+    color: white !important; /* Белый текст */
+  }
+  
+  /* Стили для навигационных ссылок при наведении */
+  .navbar .nav-link:hover {
+    color: #ccc !important; /* Цвет при наведении (например, светло-серый) */
+  }
+  
+  /* Стили для навигационного бренда при наведении */
+  .navbar .navbar-brand:hover {
+    color: #ccc !important; /* Цвет при наведении */
+  }
+  
+
+.active {
+  text-decoration: underline; /* Подчеркивание для активного состояния */
+}
