@@ -4,14 +4,12 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Backround extends Model {
-    static associate({ Skins }) {
-      this.hasMany(Skins, { foreignKey: '' });
+    static associate(models) {
     }
   }
 
   Backround.init(
     {
-      id:  DataTypes.INTEGER,
       image: DataTypes.TEXT,
       color:  DataTypes.STRING, 
       fontFamily:  DataTypes.STRING,
