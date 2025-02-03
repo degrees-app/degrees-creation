@@ -11,6 +11,7 @@ export default function SoundCard({ sound }: SoundCardProps): React.JSX.Element 
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
+    console.log(sound);
     audioRef.current = new Audio(sound.url);
 
     audioRef.current.addEventListener('ended', () => {
@@ -48,22 +49,12 @@ export default function SoundCard({ sound }: SoundCardProps): React.JSX.Element 
     }
   };
 
-  const handleStop = () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-      setIsPlaying(false);
-    }
-  };
-
   return (
     <div>
+      <div> {sound.type}</div>
       <Button onClick={handlePlay}>
-        <div>
-          {isPlaying ? 'Pause' : 'Play'} {sound.type}
-        </div>
+        <div>{isPlaying ? 'Pause' : 'Play'}</div>
       </Button>
-      <Button onClick={handleStop}>Stop</Button>
     </div>
   );
 }
