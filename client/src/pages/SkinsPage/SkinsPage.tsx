@@ -5,19 +5,14 @@ import { Box, Typography } from '@mui/material';
 export default function SkinsPage() {
   const navigate = useNavigate();
 
-  const handleNavigation = (path) => {
+  const handleNavigation = (path: string) => {
     navigate(path);
   };
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, padding: 3 }}>
-      {/* Заголовок страницы */}
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Typography variant="h6" textAlign="left" sx={{ flexGrow: 1 }}>
-          skins.
-        </Typography>
       </Box>
-
       {/* Панель навигации */}
       <Box sx={{ display: 'flex', justifyContent: 'flex-start', gap: 2 }}>
         <Typography
@@ -34,9 +29,9 @@ export default function SkinsPage() {
         </Typography>
         <Typography
           className="link" // Применяем класс для стилей
-          onClick={() => handleNavigation('/skins/backround')}
+          onClick={() => handleNavigation('/skins/background')}
         >
-          backround.
+          background.
         </Typography>
         <Typography
           className="link" // Применяем класс для стилей

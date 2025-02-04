@@ -1,26 +1,29 @@
 const express = require('express');
-const interface = require('../../db/models/interface');
 const interfaceRouter = express.Router();
+const { Interface } = require('../../db/models');
 
-// Маршруты для Interface
-interfaceRouter
-  .route('/')
-  .get(async (req, res) => {
-    try {
-      const interfaces = await interface.findAll();
-      return res.status(200).json(interfaces);
-    } catch (error) {
-      return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
-    }
-  })
-  .post(async (req, res) => {
-    try {
-      const { type } = req.body;
-      const interfaceItem = await interface.create({ type });
-      return res.status(201).json(interfaceItem);
-    } catch (error) {
-      return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
-    }
-  });
+
+// Сохранение изображения с параметрами
+interfaceRouter.post('/save', async (req, res) => {
+  try {
+    const { image, fontFamily, color } = req.body;
+    const newInterface = await Interface.create({ image, fontFamily, color });
+    res.json(newInterface);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Ошибка сохранения' });
+  }
+});
+
+// Получение всех изображений
+interfaceRouter.get('/get', async (req, res) => {
+  try {
+    const interface = await Interface.findAll();
+    res.json(interface);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Ошибка получения данных' });
+  }
+});
 
 module.exports = interfaceRouter;

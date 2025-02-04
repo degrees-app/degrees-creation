@@ -1,8 +1,8 @@
-import { BackroundForm } from '../../widgets/BackroundForm/BackroundForm';
-import { CanvasPhoneFrame } from '../../entities/backround/ui/CanvasPhoneFlam';
+import { InterfaceForm } from '../../../widgets/InterfaceForm/InterfaceForm';
+import { CanvasPhoneFrame } from '../../../entities/interface/ui/CanvasPhoneFlam';
 import { Box } from '@mui/material';
 
-export const BackroundPage = () => {
+export const InterfaceRedactorPage = () => {
   return (
     <Box
       sx={{
@@ -14,7 +14,7 @@ export const BackroundPage = () => {
         height: '100vh', // Занять всю высоту экрана
       }}
     >
-      <BackroundForm />
+      <InterfaceForm />
       <CanvasPhoneFrame />
     </Box>
   );
