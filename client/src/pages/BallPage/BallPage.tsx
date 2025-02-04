@@ -19,6 +19,7 @@ export const BallPage = () => {
     shape: 'Sphere',
   });
 
+
   // Переменные для хранения данных для записи на сервер
   const [dataToSend, setDataToSend] = useState({
     lineType: params['line type'],
