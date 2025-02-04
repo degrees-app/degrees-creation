@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, Button } from '@mui/material';
 import styles from '../../../pages/SkinsPage/SkinsPage.module.scss'; 
-import { BallType } from '../types/bollTypes';
+import { BallType } from '../types/ballTypes';
 
 type BallCardProps = {
   ball: BallType;

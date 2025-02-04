@@ -1,23 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
-import { ballSliceType } from '../types/ballTypes'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { BallType } from '../types/ballTypes';
 
-const initialState: ballSliceType = {
-background: []
-}
-
-export const ballSlice = createSlice({
-  name: 'ball',
-  initialState,
-  reducers: {
-    },
-  extraReducers(builder) {
-    builder
-  },
+// Определите сервис с базовым URL и ожидаемыми конечными точками
+export const ballApiSlice = createApi({
+  reducerPath: 'ballSlice',
+  baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
+  tagTypes: ['Balls'],
+  endpoints: (builder) => ({
+    getBalls: builder.query<BallType[], void>({
+      query: () => '/balls',
+      providesTags: ['Balls'],
+    }),
+    // getSkinById: builder.query<SkinType, SkinType['id']>({
+    //   query: (id) => `skins/${String(id)}`,
+    //   providesTags: ['Skins'],
+    // }),
+  }),
 });
 
+export default ballApiSlice.reducer;
 
-
-export const {  } = ballSlice.actions
-
-export default ballSlice.reducer
+export const { useGetBallsQuery } = ballApiSlice;

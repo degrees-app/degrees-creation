@@ -1,13 +1,26 @@
 const express = require('express');
 const interfaceRouter = express.Router();
 const { Interface } = require('../../db/models');
-
+const fs = require('fs/promises');
+const sharp = require('sharp');
+const upload = require('../middlewares/multer');
+const path = require('path');
 
 // Сохранение изображения с параметрами
-interfaceRouter.post('/save', async (req, res) => {
+interfaceRouter.post('/save', upload.single('file'), async (req, res) => {
   try {
-    const { image, fontFamily, color } = req.body;
-    const newInterface = await Interface.create({ image, fontFamily, color });
+    const { fontFamily, color } = req.body;
+    if (!req.file) {
+      return res.status(400).json({ error: 'Файл не загружен' });
+    }
+    const name = `${Date.now()}.webp`;
+    const outputBuffer = await sharp(req.file.buffer).webp().toBuffer();
+    await fs.writeFile(`public/img/${name}`, outputBuffer);
+    const newInterface = await Interface.create({
+      image: name,
+      fontFamily,
+      color,
+    });
     res.json(newInterface);
   } catch (error) {
     console.log(error);

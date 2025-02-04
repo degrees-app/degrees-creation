@@ -2,7 +2,7 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
 import BallCard from '../../../entities/ball/ui/BallCard';
-import { useGetBallsQuery } from '../../../entities/ball/api/ball';
+import { useGetBallsQuery } from '../../../entities/ball/model/ballSlice';
 
 export default function BallSkinsPage(): React.JSX.Element {
   const { data: balls, isSuccess } = useGetBallsQuery(undefined);
