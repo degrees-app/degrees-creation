@@ -15,7 +15,7 @@ module.exports = {
         allowNull: false,
       },
       width: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: false,
       },
       dashed: {
@@ -27,7 +27,7 @@ module.exports = {
         allowNull: false,
       },
       dashScale: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: false,
       },
       dashGap: {
