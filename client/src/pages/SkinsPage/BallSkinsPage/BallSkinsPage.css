@@ -1,0 +1,21 @@
+.pagination {
+    margin-top: 20px;
+    justify-content: center;
+  }
+  
+  .pagination .page-item {
+    background-color: black;
+    color: black;
+    border: 1px solid black;
+  }
+  
+  .pagination .page-item.active {
+    background-color: black;
+    color: black;
+  }
+  
+  .pagination .page-item:disabled {
+    background-color: black;
+    color: black;
+    border: 1px solid black;
+  }
