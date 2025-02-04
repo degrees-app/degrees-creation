@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { ballSliceType } from '../types/ballTypes'
 
 const initialState: ballSliceType = {
-backround: []
+background: []
 }
 
 export const ballSlice = createSlice({

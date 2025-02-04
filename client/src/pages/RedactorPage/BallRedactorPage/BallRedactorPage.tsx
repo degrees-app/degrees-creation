@@ -6,7 +6,7 @@ import { LineMaterial } from 'three/examples/jsm/lines/LineMaterial.js';
 import { Wireframe } from 'three/examples/jsm/lines/Wireframe.js';
 import { WireframeGeometry2 } from 'three/examples/jsm/lines/WireframeGeometry2.js';
 
-export const BallPage = () => {
+export const BallRedactorPage = () => {
   const guiRef = useRef(null); // Ссылка на контейнер для GUI
   const [params, setParams] = useState({
     'line type': 0,
