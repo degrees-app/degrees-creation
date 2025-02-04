@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 export default function RedactorPage() {
   const navigate = useNavigate();
 
-  const handleNavigation = (path) => {
+  const handleNavigation = (path: string) => {
     navigate(path);
   };
 
@@ -26,9 +26,9 @@ export default function RedactorPage() {
         </Typography>
         <Typography
           className="link" // Применяем класс для стилей
-          onClick={() => handleNavigation('/redactor/backround')}
+          onClick={() => handleNavigation('/redactor/background')}
         >
-          backround.
+          background.
         </Typography>
         <Typography
           className="link" // Применяем класс для стилей

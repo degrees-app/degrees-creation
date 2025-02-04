@@ -4,7 +4,7 @@ const skinsRouter = require('./routes/skinsRouter');
 const ballRouter = require('./routes/ballRouter');
 const interfaceRouter = require('./routes/interfaceRouter');
 const soundRouter = require('./routes/soundRouter');
-const backroundRouter = require('./routes/backgroundRouter');
+const backroundRouter = require('./routes/interfaceRouter');
 const app = express();
 
 // ✅ Логирование запросов

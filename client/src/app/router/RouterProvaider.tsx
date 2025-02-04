@@ -5,11 +5,11 @@ import RedactorPage from '../../pages/RedactorPage/RedactorPage';
 import SkinsPage from '../../pages/SkinsPage/SkinsPage';
 import MainPage from '../../entities/MainPage/MainPage';
 import BallPage  from '../../pages/RedactorPage/BallPage/BallPage';
-import { InterfacePage } from '../../pages/RedactorPage/InterfacePage/InterfacePage';
-import { BackroundPage } from '../../pages/BackrounderPage/BackroundPage';
+import { InterfaceRedactorPage } from '../../pages/RedactorPage/InterfaceRedactorPage/InterfaceRedactorPage';
+import { BackgroundPage } from '../../pages/BackgrounderPage/BackgroundPage';
 import SoundPage from '../../pages/RedactorPage/SoundPage/SoundPage';
-import {BackroundSkinsPage} from '../../pages/SkinsPage/BackroundSkinsPage/BackroundSkinsPage';
-import InterfaceSkinsPage from '../../pages/SkinsPage/InterfaceSkinsPage/InterfaceSkinsPage';
+import {InterfaceSkinsPage} from '../../pages/SkinsPage/InterfaceSkinsPage/InterfaceSkinsPage';
+
 
 
 export default function RouterProvider(): React.JSX.Element {
@@ -18,15 +18,15 @@ export default function RouterProvider(): React.JSX.Element {
       <Route element={<Layout />}>
         <Route path="/" element={<MainPage />} />
         <Route path="/skins" element={<SkinsPage />}>
-          <Route path="/skins/backround" element={<BackroundSkinsPage />} />
+          <Route path="/skins/background" element={<BackgroundSkinsPage />} />
           <Route path="/skins/interface" element={<InterfaceSkinsPage />} />
           <Route path="/skins/ball" element={<BallPage />} />
           <Route path="/skins/sound" element={<SoundPage />} />
         </Route>
         <Route path="/redactor" element={<RedactorPage />}>
           <Route path="/redactor/ball" element={<BallPage />} />
-          <Route path="/redactor/interface" element={<InterfacePage />} />
-          <Route path="/redactor/backround" element={<BackroundPage />} />
+          <Route path="/redactor/interface" element={<InterfaceRedactorPage />} />
+          <Route path="/redactor/background" element={<BackgroundPage />} />
           <Route path="/redactor/sound" element={<SoundPage />} />
         </Route>
       </Route>

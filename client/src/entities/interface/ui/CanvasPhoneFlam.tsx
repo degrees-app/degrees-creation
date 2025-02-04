@@ -4,7 +4,7 @@ import { RootState } from "../../../app/store";
 
 export const CanvasPhoneFrame = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const { textStyle, degrees, number1, number2 } = useSelector((state: RootState) => state.backround);
+  const { textStyle, degrees, number1, number2 } = useSelector((state: RootState) => state.interface);
 
   useEffect(() => {
     const canvas = canvasRef.current;

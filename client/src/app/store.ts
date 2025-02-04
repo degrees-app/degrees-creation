@@ -1,7 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit'
-import ballReducer from '../entities/ball/model/ballSlice'
-import interfaceReducer from '../entities/interface/model/interfaceSlice'
-import backroundReducer from '../entities/backround/model/backroundSlice'
+import { configureStore } from '@reduxjs/toolkit';
+import ballReducer from '../entities/ball/model/ballSlice';
+import interfaceReducer from '../entities/interface/model/interfaceSlice';
+import backgroundReducer from '../entities/background/model/backgroundSlice';
 // import soundReducer from '../entities/sound/model/soundSlice'
 import { skinApiSlice } from '../entities/skin/api/skin';
 import { setupListeners } from '@reduxjs/toolkit/query';
@@ -12,7 +12,7 @@ export const store = configureStore({
   reducer: {
     ball: ballReducer,
     interface: interfaceReducer,
-    backround: backroundReducer,
+    background: backgroundReducer,
 
     // Редьюсеры категорий
     [skinApiSlice.reducerPath]: skinApiSlice.reducer,

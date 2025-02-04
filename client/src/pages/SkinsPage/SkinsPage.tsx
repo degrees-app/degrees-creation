@@ -5,7 +5,7 @@ import { Box, Typography } from '@mui/material';
 export default function SkinsPage() {
   const navigate = useNavigate();
 
-  const handleNavigation = (path) => {
+  const handleNavigation = (path: string) => {
     navigate(path);
   };
 
@@ -29,9 +29,9 @@ export default function SkinsPage() {
         </Typography>
         <Typography
           className="link" // Применяем класс для стилей
-          onClick={() => handleNavigation('/skins/backround')}
+          onClick={() => handleNavigation('/skins/background')}
         >
-          backround.
+          background.
         </Typography>
         <Typography
           className="link" // Применяем класс для стилей
