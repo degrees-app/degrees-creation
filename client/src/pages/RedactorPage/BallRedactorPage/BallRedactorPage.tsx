@@ -24,16 +24,6 @@ export const BallRedactorPage = () => {
   const ball = useAppSelector((state) => state.ball);
   const dispatch = useAppDispatch();
 
-  // const [dataToSend, setDataToSend] = useState({
-  //   lineType: params['line type'],
-  //   width: params['width (px)'],
-  //   dashed: params.dashed,
-  //   dashScale: params['dash scale'],
-  //   dashGap: params['dash / gap'],
-  //   color: params.color,
-  //   shape: params.shape,
-  // });
-
   useEffect(() => {
     let wireframe, renderer, scene, camera, camera2, controls;
     let wireframe1;
@@ -212,11 +202,11 @@ export const BallRedactorPage = () => {
                   lineType: params['line type'],
                   width: params['width (px)'],
                   dashed: params.dashed,
-                  color: params.color,
                   dashScale: params['dash scale'],
                   dashGap: params['dash / gap'],
+                  color: params.color,
                   shape: params.shape,
-                };
+                }
               
               dispatch(CreateBallCard(initialPosts));
             },
