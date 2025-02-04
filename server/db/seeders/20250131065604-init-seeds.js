@@ -17,18 +17,18 @@ module.exports = {
         title: 'Ball',
       },
     ]);
-    await queryInterface.bulkInsert('Balls', [
+    await queryInterface.bulkInsert('Interfaces', [
       {
-        type: 'Color1',
+        type: 'interface1',
       },
       {
-        type: 'Color2',
+        type: 'Interface2',
       },
       {
-        type: 'Color3',
+        type: 'Interface3',
       },
       {
-        type: 'Color4',
+        type: 'Interface4',
       },
     ]);
     await queryInterface.bulkInsert('Sounds', [
