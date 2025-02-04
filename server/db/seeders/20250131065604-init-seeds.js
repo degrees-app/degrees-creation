@@ -17,20 +17,6 @@ module.exports = {
         title: 'Ball',
       },
     ]);
-    await queryInterface.bulkInsert('Interfaces', [
-      {
-        type: 'interface1',
-      },
-      {
-        type: 'Interface2',
-      },
-      {
-        type: 'Interface3',
-      },
-      {
-        type: 'Interface4',
-      },
-    ]);
     await queryInterface.bulkInsert('Sounds', [
       {
         type: 'sound 1',
