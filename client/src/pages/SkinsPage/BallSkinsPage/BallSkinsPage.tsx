@@ -34,18 +34,20 @@ export default function BallSkinsPage(): React.JSX.Element {
   const totalPages = Math.ceil(ball.length / cardsPerPage);
 
   return (
-    <div>
-      {currentCards.length > 0 ? (
-        currentCards.map((card) => (
-          <Col key={card.id}>
-            <BallCard card={card} />
+    <div >
+      <div style ={{display:'flex', justifyContent:'center',alignItems:'center',flexWrap:'wrap',gap:'50px'}}>
+        {currentCards.length > 0 ? (
+          currentCards.map((card) => (
+            <div key={card.id} >
+              <BallCard card={card} />
+            </div>
+          ))
+        ) : (
+          <Col>
+            <div>No sounds available</div>
           </Col>
-        ))
-      ) : (
-        <Col>
-          <div>No sounds available</div>
-        </Col>
-      )}
+        )}
+      </div>
 
       {/* Пагинация */}
       <Pagination className='pagination'>

@@ -3,8 +3,7 @@ import * as THREE from 'three';
 import { LineMaterial } from 'three/examples/jsm/lines/LineMaterial.js';
 import { Wireframe } from 'three/examples/jsm/lines/Wireframe.js';
 import { WireframeGeometry2 } from 'three/examples/jsm/lines/WireframeGeometry2.js';
-import { useAppDispatch, useAppSelector } from '../../../shared/lib/hooks';
-
+import './BallCard.css'
 export const BallCard = ({ card }) => {
   const containerId = `three-container-${card.id}`;
 
@@ -29,7 +28,7 @@ export const BallCard = ({ card }) => {
     function init() {
       renderer = new THREE.WebGLRenderer({ antialias: false });
       renderer.setPixelRatio(window.devicePixelRatio);
-      renderer.setSize(window.innerWidth * 0.75, window.innerHeight);
+      renderer.setSize(500,500);
       renderer.setClearColor(0x000000, 0.0);
 
       const threeContainer = document.getElementById(containerId);
@@ -39,7 +38,7 @@ export const BallCard = ({ card }) => {
 
       camera = new THREE.PerspectiveCamera(
         40,
-        (window.innerWidth * 0.75) / window.innerHeight,
+        (500) / 500,
         1,
         1000,
       );
@@ -79,8 +78,8 @@ export const BallCard = ({ card }) => {
     }
 
     function onWindowResize() {
-      const width = window.innerWidth * 0.75;
-      const height = window.innerHeight;
+      const width = 500;
+      const height = 500;
 
       renderer.setSize(width, height);
       camera.aspect = width / height;
@@ -103,9 +102,11 @@ export const BallCard = ({ card }) => {
   }, [params]);
 
   return (
-    <div style={{ display: 'flex', height: '100vh', width: '100vw' }}>
-      <div id={containerId} style={{ flex: 3, height: '100%', position: 'relative' }} />
-      <div ref={guiRef} />
+    <div className='triD'>
+      <div >
+        <div id={containerId} />
+        <div ref={guiRef}/>
+      </div>
     </div>
   );
 };

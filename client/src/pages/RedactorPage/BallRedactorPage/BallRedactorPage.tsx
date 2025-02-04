@@ -61,7 +61,7 @@ export const BallRedactorPage = () => {
       controls.minDistance = 10;
       controls.maxDistance = 500;
 
-      geo = new THREE.IcosahedronGeometry(20, 1);
+      geo = new THREE.SphereGeometry(10, 32, 32);
       const geometry = new WireframeGeometry2(geo);
 
       matLine = new LineMaterial({
@@ -241,20 +241,6 @@ export const BallRedactorPage = () => {
         wireframe1.geometry = new THREE.WireframeGeometry(geometry);
         wireframe1.computeLineDistances();
       }
-
-      // function addShape() {
-      //   setDataToSend({
-      //     lineType: params['line type'],
-      //     width: params['width (px)'],
-      //     dashed: params.dashed,
-      //     dashScale: params['dash scale'],
-      //     dashGap: params['dash / gap'],
-      //     color: params.color,
-      //     shape: params.shape,
-      //   });
-
-      //   console.log('Данные для отправки на сервер:', dataToSend);
-      // }
     }
 
     return () => {
