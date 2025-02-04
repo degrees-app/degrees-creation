@@ -7,7 +7,7 @@ ballRouter
   .route('/')
   .get(async (req, res) => {
     try {
-      const balls = await Ball.findAll();
+      const balls = await Ball.findAll({order: [['id', 'DESC']]});
       return res.status(200).json(balls);
     } catch (error) {
       return res.status(500).json({ text: 'Ошибка сервера', message: error.message });

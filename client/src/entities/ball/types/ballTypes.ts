@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 export const BallObjectSchema = z.object({
+  id: z.number(),
   lineType: z.number(),
   width: z.number(),
   dashed: z.boolean(),

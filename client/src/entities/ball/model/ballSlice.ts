@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { BallArrayType} from '../types/ballTypes';
+import { BallArrayType } from '../types/ballTypes';
 import { CreateBallCard, fetchBallCards, FindOneBall } from './ballThunk';
 
 type ballSliceType = {
@@ -29,7 +29,7 @@ export const ballSlice = createSlice({
         fetchBallCards.fulfilled,
         (state, action: PayloadAction<BallArrayType>) => {
           state.loading = false;
-          state.ball = action.payload;
+          state.ball = action.payload.map((b) => ({ ...b, id: b.id || Math.random() }));
         },
       )
       .addCase(fetchBallCards.rejected, (state, action) => {
@@ -44,7 +44,7 @@ export const ballSlice = createSlice({
         CreateBallCard.fulfilled,
         (state, action: PayloadAction<BallArrayType>) => {
           state.loading = false;
-          state.ball = action.payload;
+          state.ball = action.payload.map((b) => ({ ...b, id: b.id || Math.random() }));
         },
       )
       .addCase(CreateBallCard.rejected, (state, action) => {
@@ -57,7 +57,7 @@ export const ballSlice = createSlice({
       })
       .addCase(FindOneBall.fulfilled, (state, action: PayloadAction<BallArrayType>) => {
         state.loading = false;
-        state.ball = action.payload;
+        state.ball = action.payload.map((b) => ({ ...b, id: b.id || Math.random() }));
       })
       .addCase(FindOneBall.rejected, (state, action) => {
         state.loading = false;
