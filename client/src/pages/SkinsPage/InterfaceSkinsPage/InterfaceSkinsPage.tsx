@@ -12,9 +12,6 @@ export const InterfaceSkinsPage = () => {
 
     fetchInterfaces();
   }, []);
-  console.log('====================================');
-  console.log(interfaces.image);
-  console.log('====================================');
   return (
     <div>
       <h2>Сохраненные интерфейсы</h2>
