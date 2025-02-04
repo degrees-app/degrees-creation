@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js';
@@ -19,7 +18,6 @@ export const BallRedactorPage = () => {
     shape: 'Sphere',
   });
 
-  // Переменные для хранения данных для записи на сервер
   const [dataToSend, setDataToSend] = useState({
     lineType: params['line type'],
     width: params['width (px)'],
@@ -29,8 +27,6 @@ export const BallRedactorPage = () => {
     color: params.color,
     shape: params.shape,
   });
-
-  console.log(dataToSend);
 
   useEffect(() => {
     let wireframe, renderer, scene, camera, camera2, controls;
@@ -46,13 +42,15 @@ export const BallRedactorPage = () => {
     function init() {
       renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setPixelRatio(window.devicePixelRatio);
-      renderer.setSize(800, 600);
+      renderer.setSize(window.innerWidth * 0.75, window.innerHeight);
       renderer.setClearColor(0x000000, 0.0);
-      document.body.appendChild(renderer.domElement);
+
+      const threeContainer = document.getElementById('three-container');
+      threeContainer.appendChild(renderer.domElement);
 
       scene = new THREE.Scene();
 
-      camera = new THREE.PerspectiveCamera(40, 800 / 600, 1, 1000);
+      camera = new THREE.PerspectiveCamera(40, window.innerWidth * 0.75 / window.innerHeight, 1, 1000);
       camera.position.set(-50, 0, 50);
 
       camera2 = new THREE.PerspectiveCamera(40, 1, 1, 1000);
@@ -96,12 +94,15 @@ export const BallRedactorPage = () => {
     }
 
     function onWindowResize() {
-      camera.aspect = 800 / 600;
-      camera.updateProjectionMatrix();
-      renderer.setSize(800, 600);
+      const width = window.innerWidth * 0.75;
+      const height = window.innerHeight;
 
-      insetWidth = 600 / 4;
-      insetHeight = 600 / 4;
+      renderer.setSize(width, height);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+
+      insetWidth = height / 4;
+      insetHeight = height / 4;
 
       camera2.aspect = insetWidth / insetHeight;
       camera2.updateProjectionMatrix();
@@ -109,7 +110,7 @@ export const BallRedactorPage = () => {
 
     function animate() {
       renderer.setClearColor(0x000000, 0);
-      renderer.setViewport(0, 0, 800, 600);
+      renderer.setViewport(0, 0, window.innerWidth * 0.75, window.innerHeight);
       renderer.render(scene, camera);
 
       renderer.setClearColor(0x222222, 1);
@@ -125,8 +126,9 @@ export const BallRedactorPage = () => {
     }
 
     function initGui() {
-      gui = new GUI({ autoPlace: false }); // Создаем GUI без автоматического добавления в body
-      guiRef.current.appendChild(gui.domElement); // Добавляем GUI в контейнер
+      gui = new GUI({ autoPlace: false });
+      guiRef.current.appendChild(gui.domElement);
+
       gui
         .add(params, 'line type', { LineGeometry: 0, 'gl.LINE': 1 })
         .onChange(function (val) {
@@ -190,7 +192,6 @@ export const BallRedactorPage = () => {
           updateShape(val);
         });
 
-      // Добавление кнопки "Добавить"
       gui.add({ add: () => addShape() }, 'add').name('Добавить');
 
       function updateShape(shape) {
@@ -221,7 +222,6 @@ export const BallRedactorPage = () => {
       }
 
       function addShape() {
-        // Обновление данных для отправки на сервер
         setDataToSend({
           lineType: params['line type'],
           width: params['width (px)'],
@@ -233,22 +233,35 @@ export const BallRedactorPage = () => {
         });
 
         console.log('Данные для отправки на сервер:', dataToSend);
-        // Здесь можно добавить логику для отправки данных на сервер
       }
     }
 
     return () => {
-      document.body.removeChild(renderer.domElement);
+      const threeContainer = document.getElementById('three-container');
+      if (threeContainer) {
+        threeContainer.removeChild(renderer.domElement);
+      }
       window.removeEventListener('resize', onWindowResize);
     };
   }, [params]);
 
   return (
-    <div style={{ display: 'flex',  position: 'relative' }}>
-    {/* Контейнер для рендеринга */}
-    <div style={{ width: '70%', height: '600px' }} />
-    <div ref={guiRef} style={{ width: '30%', position: 'absolute', top: '10px', right: '10px' }} />
-  </div>
-);
+    <div style={{ display: 'flex', height: '100vh', width: '100vw' }}>
+      <div
+        id="three-container"
+        style={{ flex: 3, height: '100%', position: 'relative' }}
+      />
+      <div
+        ref={guiRef}
+        style={{
+          flex: 1,
+          height: '100%',
+          overflow: 'auto',
+          padding: '10px',
+          backgroundColor: '#2d2d2d',
+          color: '#fff',
+        }}
+      />
+    </div>
+  );
 };
-
