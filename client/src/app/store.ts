@@ -6,24 +6,23 @@ import backgroundReducer from '../entities/background/model/backgroundSlice';
 import { skinApiSlice } from '../entities/skin/api/skin';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { soundApiSlice } from '../entities/sound/api/sound';
-import { ballApiSlice } from '../entities/ball/api/ball';
+// import { ballApiSlice } from '../entities/ball/model/ballSlice';
 
 export const store = configureStore({
   reducer: {
     ball: ballReducer,
     interface: interfaceReducer,
     background: backgroundReducer,
-
     // Редьюсеры категорий
     [skinApiSlice.reducerPath]: skinApiSlice.reducer,
     [soundApiSlice.reducerPath]: soundApiSlice.reducer,
-    [ballApiSlice.reducerPath]: ballApiSlice.reducer,
+    // [ballApiSlice.reducerPath]: ballApiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(skinApiSlice.middleware)
-      .concat(soundApiSlice.middleware)
-      .concat(ballApiSlice.middleware),
+      .concat(soundApiSlice.middleware),
+  // .concat(ballApiSlice.middleware),
 });
 
 setupListeners(store.dispatch);

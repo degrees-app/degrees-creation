@@ -3,7 +3,6 @@ import { RootState, AppDispatch } from '../../app/store';
 import { setTextStyle } from '../../entities/interface/model/interfaceSlice';
 import { Box, Button, Select, MenuItem, InputLabel } from '@mui/material';
 
-
 // Доступные стили шрифтов
 const fontFamilies = [
   'Arial',
@@ -30,38 +29,41 @@ export const InterfaceForm = () => {
     dispatch(setTextStyle({ color: event.target.value }));
   };
 
-  // 💾 Функция сохранения (canvas + стили)
+  // 💾 Функция сохранения `canvas` через `multer`
   const handleSave = async () => {
-    const canvas = document.querySelector('canvas');
+    const canvas = document.querySelector('canvas') as HTMLCanvasElement;
     if (!canvas) {
       alert('Canvas не найден!');
       return;
     }
 
-    // Преобразуем canvas в base64
-    const imageBase64 = canvas.toDataURL('image/png');
+    // 🔥 Преобразуем `canvas` в Blob (файл)
+    canvas.toBlob(async (blob) => {
+      if (!blob) {
+        alert('Ошибка при обработке canvas!');
+        return;
+      }
 
-    // Отправляем на сервер
-    try {
-      const response = await fetch('/api/interface/save', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          image: imageBase64,
-          fontFamily: textStyle.fontFamily,
-          color: textStyle.color,
-        }),
-      });
+      // 🔥 Создаем `FormData`
+      const formData = new FormData();
+      formData.append('file', blob, 'canvas.png'); // 📌 Отправляем `canvas` как файл
+      formData.append('fontFamily', textStyle.fontFamily);
+      formData.append('color', textStyle.color);
 
-      if (!response.ok) throw new Error('Ошибка при сохранении');
+      try {
+        const response = await fetch('/api/interfaces/save', {
+          method: 'POST',
+          body: formData, // 🔥 Отправляем `FormData`, а не JSON
+        });
 
-      alert('Изображение сохранено!');
-    } catch (error) {
-      console.error('Ошибка:', error);
-      alert('Не удалось сохранить изображение');
-    }
+        if (!response.ok) throw new Error('Ошибка при сохранении');
+
+        alert('Canvas сохранен!');
+      } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Не удалось сохранить canvas');
+      }
+    }, 'image/png');
   };
 
   return (
