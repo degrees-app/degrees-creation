@@ -16,6 +16,7 @@ export const BallRedactorPage = () => {
     color: 0x4080ff,
     shape: 'Sphere',
     opacity: 1.0,
+    author: '', // Новый параметр для имени автора
   });
 
   const ball = useAppSelector((state) => state.ball);
@@ -140,23 +141,40 @@ export const BallRedactorPage = () => {
         matLine.transparent = val < 1.0; // Установить прозрачность
       });
 
+      gui.add(params, 'author').onChange(function (val) {
+        // Проверка длины имени автора
+        if (val.length === 0) {
+          console.warn('Author name must not be empty.');
+        } else {
+          console.log('Author name:', val); // Логируем имя автора
+        }
+      });
+
       gui
         .add(
           {
             add: () => {
+              // Проверка длины имени автора перед добавлением
+              if (params.author.length === 0) {
+                console.warn('Author name must not be empty.');
+                return; // Прекращаем выполнение, если имя автора некорректно
+              }
+
               const initialPosts = {
                 width: params['width (px)'],
                 color: params.color,
                 shape: params.shape,
                 opacity: params.opacity,
+                author: params.author, // Добавляем автора в пост
               };
 
               dispatch(CreateBallCard(initialPosts));
+              window.location.href = '/skins/ball'; // Переход на страницу после успешного добавления
             },
           },
           'add',
         )
-        .name('Добавить');
+        .name('Add');
 
       function updateShape(shape) {
         let geometry;
@@ -203,17 +221,14 @@ export const BallRedactorPage = () => {
     <div style={{ display: 'flex', height: '100vh', width: '100vw' }}>
       <div
         id="three-container"
-        style={{ flex: 3, height: '100%', position: 'relative' }}
+        style={{ width: '65%', height: '100%', position: 'relative' }}
       />
       <div
         ref={guiRef}
         style={{
-          flex: 1,
+          width: '35%', 
           height: '100%',
-          overflow: 'auto',
-          padding: '10px',
-          backgroundColor: '#2d2d2d',
-          color: '#fff',
+          overflow: 'auto', 
         }}
       />
     </div>

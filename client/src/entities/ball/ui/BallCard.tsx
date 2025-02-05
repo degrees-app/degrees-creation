@@ -104,6 +104,7 @@ export const BallCard = ({ card }) => {
       <div>
         <div id={containerId}/>
       </div>
+      <h1 className='author' style={{display: 'flex', justifyContent:'center', textDecoration:'none', color:'white'}}>author: {card.author}</h1>
     </div>
   );
 };

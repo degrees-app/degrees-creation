@@ -6,6 +6,7 @@ export const BallObjectSchema = z.object({
   color: z.number(),
   shape:z.string(),
   opacity:z.number(),
+  author: z.string()
 });
 
 export const BallSchema = z.array(BallObjectSchema)

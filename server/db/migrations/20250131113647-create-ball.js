@@ -26,6 +26,10 @@ module.exports = {
         type: Sequelize.FLOAT,
         allowNull: false,
       },
+      author: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       createdAt: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn('NOW'),
