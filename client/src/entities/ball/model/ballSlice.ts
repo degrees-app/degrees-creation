@@ -1,16 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { BallArrayType } from '../types/ballTypes';
+import { BallArrayType, BallObjectType } from '../types/ballTypes';
 import { CreateBallCard, fetchBallCards, FindOneBall } from './ballThunk';
 
 type ballSliceType = {
   ball: BallArrayType;
+  oneball: BallObjectType;
   loading: boolean;
   error: string | null;
 };
 
 const initialState: ballSliceType = {
   ball: [],
+  oneball: {} as BallObjectType,
   loading: false,
   error: null,
 };
@@ -55,9 +57,9 @@ export const ballSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(FindOneBall.fulfilled, (state, action: PayloadAction<BallArrayType>) => {
+      .addCase(FindOneBall.fulfilled, (state, action: PayloadAction<BallObjectType>) => {
         state.loading = false;
-        state.ball = action.payload.map((b) => ({ ...b, id: b.id || Math.random() }));
+        state.oneball = action.payload;
       })
       .addCase(FindOneBall.rejected, (state, action) => {
         state.loading = false;

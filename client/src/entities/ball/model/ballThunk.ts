@@ -1,4 +1,4 @@
-import {BallObjectType, BallSchema } from '../types/ballTypes';
+import {BallObjectSchema, BallObjectType, BallSchema } from '../types/ballTypes';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosInstance from '../../../shared/api/axiosInstance';
 
@@ -35,8 +35,8 @@ export const FindOneBall = createAsyncThunk(
     'ball/findOneBall',
     async (id:string, { rejectWithValue }) => {
       try {
-        const { data } = await axiosInstance.get(`/balls/${id}`)
-        return BallSchema.parse(data);
+        const {data} = await axiosInstance.get(`/balls/${Number(id)}`)
+        return BallObjectSchema.parse(data);
       } catch (error) {
         return rejectWithValue(
           error instanceof Error ? error.message : 'Что-то пошло не так',

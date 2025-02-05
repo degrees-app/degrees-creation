@@ -11,6 +11,7 @@ import SoundPage from '../../pages/RedactorPage/SoundPage/SoundPage';
 import {InterfaceSkinsPage} from '../../pages/SkinsPage/InterfaceSkinsPage/InterfaceSkinsPage';
 import BackgroundSkinsPage from '../../pages/SkinsPage/BackgroundSkinsPage/BackgroundSkinsPage';
 import BallSkinsPage from '../../pages/SkinsPage/BallSkinsPage/BallSkinsPage';
+import {OneBallSkinPage} from '../../pages/SkinsPage/BallSkinsPage/OneBallSkinPage';
 
 
 
@@ -23,6 +24,7 @@ export default function RouterProvider(): React.JSX.Element {
           <Route path="/skins/background" element={<BackgroundSkinsPage />} />
           <Route path="/skins/interface" element={<InterfaceSkinsPage />} />
           <Route path="/skins/ball" element={<BallSkinsPage />} />
+          <Route path="/skins/ball/:id" element={<OneBallSkinPage />} />
           <Route path="/skins/sound" element={<SoundPage />} />
         </Route>
         <Route path="/redactor" element={<RedactorPage />}>
