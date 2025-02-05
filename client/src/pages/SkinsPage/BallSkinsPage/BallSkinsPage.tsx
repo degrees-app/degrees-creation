@@ -21,12 +21,12 @@ export default function BallSkinsPage(): React.JSX.Element {
     window.scrollTo(0, 0); // Прокрутка к началу страницы
   }, [currentPage]);
 
-  if (!ball) {
+  if (loading) {
     return <div style={{ color: 'white' }}>Loading...</div>;
   }
 
-  if (loading) {
-    return <div style={{ color: 'white' }}>Loading...</div>;
+  if (!ball || ball.length === 0) {
+    return <div style={{ color: 'white' }}>No balls available</div>;
   }
 
   const indexOfLastCard = currentPage * cardsPerPage;
@@ -35,19 +35,15 @@ export default function BallSkinsPage(): React.JSX.Element {
   const totalPages = Math.ceil(ball.length / cardsPerPage);
 
   return (
-    <div >
-      <div style ={{display:'flex', justifyContent:'center',alignItems:'center',flexWrap:'wrap',gap:'50px'}}>
-        {currentCards.length > 0 ? (
-          currentCards.map((card) => (
-            <Link to={`/skins/ball/${card.id}`}> <div key={card.id}>
+    <div>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: '50px' }}>
+        {currentCards.map((card) => (
+          <Link key={card.id} to={`/skins/ball/${card.id}`}>
+            <div>
               <BallCard card={card} />
-            </div></Link>
-          ))
-        ) : (
-          <Col>
-            <div>No sounds available</div>
-          </Col>
-        )}
+            </div>
+          </Link>
+        ))}
       </div>
 
       {/* Пагинация */}
@@ -57,7 +53,6 @@ export default function BallSkinsPage(): React.JSX.Element {
           disabled={currentPage === 1}
         />
         
-        {/* Отображение страниц с многоточием */}
         {totalPages > 10 ? (
           <>
             {currentPage > 1 && <Pagination.Item onClick={() => setCurrentPage(1)}>1</Pagination.Item>}
