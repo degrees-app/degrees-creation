@@ -1,0 +1,41 @@
+.card {
+  width: 300px;
+  margin-top: 20px;
+  background-color: black !important;
+  color: white !important;
+  border: 1px solid white !important;
+  margin: 10px 10px 10px 0 !important;
+}
+
+.cardHeader {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.selectedSoundItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.removeButton {
+  background-color: black !important;
+  border-color: white !important;
+  cursor: pointer !important;
+}
+
+.soundCardContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkbox {
+  margin-left: 10px;
+}

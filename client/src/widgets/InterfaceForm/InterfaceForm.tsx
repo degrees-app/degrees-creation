@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../../app/store';
+import { RootState, AppDispatch } from '../../store';
 import { setTextStyle } from '../../entities/interface/model/interfaceSlice';
 import { Box, Button, Select, MenuItem, InputLabel } from '@mui/material';
 
@@ -120,7 +120,7 @@ export const InterfaceForm = () => {
 
       {/* Кнопка сохранения */}
       <Button variant="contained" fullWidth onClick={handleSave} sx={{ mt: 2 }}>
-      soh
+        soh
       </Button>
     </Box>
   );

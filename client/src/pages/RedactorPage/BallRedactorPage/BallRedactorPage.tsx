@@ -12,13 +12,10 @@ import { BallSchema } from '../../../entities/ball/types/ballTypes';
 export const BallRedactorPage = () => {
   const guiRef = useRef(null); // Ссылка на контейнер для GUI
   const [params, setParams] = useState({
-    'line type': 0,
     'width (px)': 5,
-    dashed: false,
-    'dash scale': 1,
-    'dash / gap': 1,
     color: 0x4080ff,
     shape: 'Sphere',
+    opacity: 1.0,
   });
 
   const ball = useAppSelector((state) => state.ball);
@@ -27,7 +24,7 @@ export const BallRedactorPage = () => {
   useEffect(() => {
     let wireframe, renderer, scene, camera, camera2, controls;
     let wireframe1;
-    let matLine, matLineBasic, matLineDashed;
+    let matLine, matLineBasic;
     let gui;
     let insetWidth;
     let insetHeight;
@@ -61,13 +58,12 @@ export const BallRedactorPage = () => {
       controls.minDistance = 10;
       controls.maxDistance = 500;
 
-      geo = new THREE.SphereGeometry(10, 32, 32);
+      geo = new THREE.SphereGeometry(16, 32, 32);
       const geometry = new WireframeGeometry2(geo);
 
       matLine = new LineMaterial({
         color: params.color,
         linewidth: params['width (px)'],
-        dashed: params.dashed,
       });
 
       wireframe = new Wireframe(geometry, matLine);
@@ -76,11 +72,6 @@ export const BallRedactorPage = () => {
 
       geo = new THREE.WireframeGeometry(geo);
       matLineBasic = new THREE.LineBasicMaterial({ color: params.color });
-      matLineDashed = new THREE.LineDashedMaterial({
-        scale: 2,
-        dashSize: 1,
-        gapSize: 1,
-      });
 
       wireframe1 = new THREE.LineSegments(geo, matLineBasic);
       wireframe1.computeLineDistances();
@@ -130,58 +121,9 @@ export const BallRedactorPage = () => {
       gui = new GUI({ autoPlace: false });
       guiRef.current.appendChild(gui.domElement);
 
-      gui
-        .add(params, 'line type', { LineGeometry: 0, 'gl.LINE': 1 })
-        .onChange(function (val) {
-          wireframe.visible = val === 0;
-          wireframe1.visible = val === 1;
-        });
-
       gui.add(params, 'width (px)', 1, 10).onChange(function (val) {
         matLine.linewidth = val;
       });
-
-      gui.add(params, 'dashed').onChange(function (val) {
-        matLine.dashed = val;
-
-        if (val) matLine.defines.USE_DASH = '';
-        else delete matLine.defines.USE_DASH;
-        matLine.needsUpdate = true;
-
-        wireframe1.material = val ? matLineDashed : matLineBasic;
-      });
-
-      gui.add(params, 'dash scale', 0.5, 1, 0.1).onChange(function (val) {
-        matLine.dashScale = val;
-        matLineDashed.scale = val;
-      });
-
-      gui
-        .add(params, 'dash / gap', { '2 : 1': 0, '1 : 1': 1, '1 : 2': 2 })
-        .onChange(function (val) {
-          switch (val) {
-            case 0:
-              matLine.dashSize = 2;
-              matLine.gapSize = 1;
-              matLineDashed.dashSize = 2;
-              matLineDashed.gapSize = 1;
-              break;
-
-            case 1:
-              matLine.dashSize = 1;
-              matLine.gapSize = 1;
-              matLineDashed.dashSize = 1;
-              matLineDashed.gapSize = 1;
-              break;
-
-            case 2:
-              matLine.dashSize = 1;
-              matLine.gapSize = 2;
-              matLineDashed.dashSize = 1;
-              matLineDashed.gapSize = 2;
-              break;
-          }
-        });
 
       gui.addColor(params, 'color').onChange(function (val) {
         matLine.color.set(val);
@@ -193,21 +135,22 @@ export const BallRedactorPage = () => {
           updateShape(val);
         });
 
+      gui.add(params, 'opacity', 0.2, 1.0).onChange(function (val) {
+        matLine.opacity = val;
+        matLine.transparent = val < 1.0; // Установить прозрачность
+      });
+
       gui
         .add(
           {
             add: () => {
-              const initialPosts = 
-                {
-                  lineType: params['line type'],
-                  width: params['width (px)'],
-                  dashed: params.dashed,
-                  dashScale: params['dash scale'],
-                  dashGap: params['dash / gap'],
-                  color: params.color,
-                  shape: params.shape,
-                }
-              
+              const initialPosts = {
+                width: params['width (px)'],
+                color: params.color,
+                shape: params.shape,
+                opacity: params.opacity,
+              };
+
               dispatch(CreateBallCard(initialPosts));
             },
           },
@@ -219,7 +162,7 @@ export const BallRedactorPage = () => {
         let geometry;
         switch (shape) {
           case 'Sphere':
-            geometry = new THREE.SphereGeometry(10, 32, 32);
+            geometry = new THREE.SphereGeometry(16, 32, 32);
             break;
           case 'Cube':
             geometry = new THREE.BoxGeometry(32, 32, 32);
@@ -240,6 +183,10 @@ export const BallRedactorPage = () => {
         wireframe1.geometry.dispose();
         wireframe1.geometry = new THREE.WireframeGeometry(geometry);
         wireframe1.computeLineDistances();
+
+        matLine.linewidth = params['width (px)'];
+        matLine.color.set(params.color);
+        matLine.needsUpdate = true;
       }
     }
 

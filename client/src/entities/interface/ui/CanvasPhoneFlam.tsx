@@ -1,17 +1,18 @@
-import { useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../app/store";
+import { useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
 
 export const CanvasPhoneFrame = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const { textStyle, degrees, number1, number2 } = useSelector((state: RootState) => state.interface);
-  const { backgroundImage, backgroundColor, brightness, contrast } = useSelector((state: RootState) => state.background);
+  const { textStyle, degrees, number1, number2 } = useSelector(
+    (state: RootState) => state.interface,
+  );
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -28,10 +29,10 @@ export const CanvasPhoneFrame = () => {
       ctx.fillStyle = backgroundColor;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
-    ctx.filter = "none";
+    ctx.filter = 'none';
 
     // 🔥 Границы экрана
-    ctx.strokeStyle = "white";
+    ctx.strokeStyle = 'white';
     ctx.lineWidth = 10;
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
@@ -39,6 +40,13 @@ export const CanvasPhoneFrame = () => {
     ctx.fillStyle = textStyle.color;
     ctx.font = `${textStyle.fontWeight} 18px ${textStyle.fontFamily}`;
     ctx.fillText(degrees, 30, 50);
+
+    // 🔥 Полые кружки (по аналогии с числами справа)
+    ctx.fillText(`°`, canvas.width - 270, 80);
+    ctx.fillText(`°`, canvas.width - 260, 80);
+    ctx.fillText(`°`, canvas.width - 250, 80);
+
+    // Верхний правый угол (числа)
     ctx.fillText(`${number1}°`, canvas.width - 80, 50);
     ctx.fillText(`${number2}°`, canvas.width - 55, 80);
 
@@ -56,19 +64,26 @@ export const CanvasPhoneFrame = () => {
 
     // 🔺 Треугольник "tocker"
     ctx.beginPath();
-    ctx.moveTo(panelX - 20, panelY - 20);
-    ctx.lineTo(panelX + 25, panelY + 10);
-    ctx.lineTo(panelX - 20, panelY + 10);
+    ctx.moveTo(panelX - 20, panelY - 20); // Верхняя точка
+    ctx.lineTo(panelX + 25, panelY + 10); // Правая нижняя точка
+    ctx.lineTo(panelX - 20, panelY + 10); // Левая нижняя точка
     ctx.closePath();
     ctx.stroke();
-    ctx.fillText("tocker", panelX - 20, panelY + 30);
+
+    // Подпись "tocker" (ниже)
+    ctx.fillText('tocker', panelX - 20, panelY + 30);
 
     // 📏 Слеш "/"
     ctx.beginPath();
     ctx.moveTo(panelX + 80, panelY + 10);
     ctx.lineTo(panelX + 110, panelY - 20);
     ctx.stroke();
-    ctx.fillText("degree", panelX + 65, panelY + 30);
+
+    //кружок degree
+    ctx.fillText(`O`, canvas.width - 165, 495);
+
+    // Подпись "degree" (ниже)
+    ctx.fillText('degree', panelX + 65, panelY + 30);
 
     // 🔘 Полый кружок с крестом "angles"
     ctx.beginPath();
@@ -78,10 +93,17 @@ export const CanvasPhoneFrame = () => {
     ctx.moveTo(panelX + 150, panelY - 10);
     ctx.lineTo(panelX + 200, panelY + 10);
     ctx.stroke();
-    ctx.fillText("angles", panelX + 150, panelY + 30);
-  }, [textStyle, degrees, number1, number2, backgroundImage, backgroundColor, brightness, contrast]);
+
+    // Подпись "angles" (ниже)
+    ctx.fillText('angles', panelX + 150, panelY + 30);
+  }, [textStyle, degrees, number1, number2]); // Обновляем canvas при изменении состояния
 
   return (
-    <canvas ref={canvasRef} width={300} height={600} style={{ borderRadius: "40px", border: "2px solid white" }} />
+    <canvas
+      ref={canvasRef}
+      width={300}
+      height={600}
+      style={{ borderRadius: '40px', border: '2px solid white' }}
+    />
   );
 };

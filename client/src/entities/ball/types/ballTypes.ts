@@ -2,13 +2,10 @@ import { z } from 'zod';
 
 export const BallObjectSchema = z.object({
   id: z.number(),
-  lineType: z.number(),
   width: z.number(),
-  dashed: z.boolean(),
   color: z.number(),
-  dashScale: z.number(),
-  dashGap:z.number(),
-  shape:z.string()
+  shape:z.string(),
+  opacity:z.number(),
 });
 
 export const BallSchema = z.array(BallObjectSchema)

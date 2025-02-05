@@ -3,40 +3,40 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Balls', {
+    await queryInterface.createTable('Sounds', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      width: {
-        type: Sequelize.FLOAT,
-        allowNull: false,
-      },
-      color: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      shape: {
+      type: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      opacity: {
-        type: Sequelize.FLOAT,
+      url: {
+        type: Sequelize.STRING,
         allowNull: false,
+      },
+      categoryId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Categories',
+          key: 'id',
+        },
+        onDelete: 'CASCADE',
       },
       createdAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('NOW'),
       },
       updatedAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('NOW'),
       },
     });
   },
+
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Balls');
+    await queryInterface.dropTable('Sounds');
   },
 };
