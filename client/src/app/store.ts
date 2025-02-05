@@ -7,6 +7,7 @@ import { skinApiSlice } from '../entities/skin/api/skin';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { soundApiSlice } from '../entities/sound/api/sound';
 import { ballApiSlice } from '../entities/ball/api/ball';
+import { categoryApiSlice } from '../entities/categories/api/category';
 
 export const store = configureStore({
   reducer: {
@@ -18,12 +19,14 @@ export const store = configureStore({
     [skinApiSlice.reducerPath]: skinApiSlice.reducer,
     [soundApiSlice.reducerPath]: soundApiSlice.reducer,
     [ballApiSlice.reducerPath]: ballApiSlice.reducer,
+    [categoryApiSlice.reducerPath]: categoryApiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(skinApiSlice.middleware)
       .concat(soundApiSlice.middleware)
-      .concat(ballApiSlice.middleware),
+      .concat(ballApiSlice.middleware)
+      .concat(categoryApiSlice.middleware),
 });
 
 setupListeners(store.dispatch);

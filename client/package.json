@@ -15,17 +15,15 @@
     "@mui/material": "^6.4.2",
     "@reduxjs/toolkit": "^2.5.1",
     "@vitejs/plugin-react": "^4.3.4",
-
+    "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
     "lil-gui": "^0.20.0",
-
-    "axios": "^1.7.9",
-
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^18.3.1",
     "react-redux": "^9.2.0",
     "react-router": "^7.1.4",
+    "react-router-dom": "^7.1.5",
     "stats.js": "^0.17.0",
     "three": "^0.173.0",
     "zod": "^3.24.1"

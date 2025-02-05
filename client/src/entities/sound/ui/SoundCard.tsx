@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { SoundType } from '../types/soundTypes';
+import style from '../../sound/ui/SoundCardStyle.module.scss'
 
 type SoundCardProps = {
   sound: SoundType;
@@ -50,10 +51,9 @@ export default function SoundCard({ sound }: SoundCardProps): React.JSX.Element 
   };
 
   return (
-    <div>
-      <div> {sound.type}</div>
-      <Button onClick={handlePlay}>
-        <div>{isPlaying ? 'Pause' : 'Play'}</div>
+    <div >
+      <Button className={style.button} onClick={handlePlay}>
+        <div>{sound.type}</div>
       </Button>
     </div>
   );
