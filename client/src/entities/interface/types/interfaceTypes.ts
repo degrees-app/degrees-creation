@@ -1,6 +1,7 @@
 export interface TextStyle {
   fontFamily: string;
   color: string;
+  fontWeight: string;
 }
 
 export interface InterfaceState {
