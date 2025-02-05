@@ -23,7 +23,7 @@ export const store = configureStore({
     getDefaultMiddleware()
       .concat(skinApiSlice.middleware)
       .concat(soundApiSlice.middleware)
-      .concat(backgroundApiSlice.middleware), // ✅ Middleware для API фонов
+      // .concat(backgroundApiSlice.middleware), // ✅ Middleware для API фонов
 });
 
 setupListeners(store.dispatch);
