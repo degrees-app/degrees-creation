@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { Col, Dropdown, Form } from 'react-bootstrap';
 import SoundCard from '../../../entities/sound/ui/SoundCard';
 import { useGetSoundsQuery } from '../../../entities/sound/api/sound';
 import { useGetCategoriesQuery } from '../../../entities/categories/api/category';
-import style from '../../RedactorPage/SoundPage/SoundPageStyle.module.scss';
+import style from '../../RedactorPage/SoundRedactorPage/SoundPageStyle.module.scss';
 import { SoundType } from '../../../entities/sound/types/soundTypes';
 import { useSoundContext } from '../../SoundContextPage/SoundContextPage';
 import SelectedSoundCard from '../SelectedSoundCard/SelectedSoundCard';

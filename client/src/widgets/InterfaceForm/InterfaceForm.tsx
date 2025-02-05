@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../../store';
+import { RootState, AppDispatch } from '../../app/store';
 import { setTextStyle } from '../../entities/interface/model/interfaceSlice';
 import { Box, Button, Select, MenuItem, InputLabel } from '@mui/material';
 
