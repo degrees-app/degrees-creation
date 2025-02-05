@@ -1,11 +1,17 @@
 import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../store';
+import { RootState } from '../../../app/store';
 
 export const CanvasPhoneFrame = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const { textStyle, degrees, number1, number2 } = useSelector(
     (state: RootState) => state.interface,
+  );
+  const { backgroundColor,
+    brightness,
+    contrast,
+    backgroundImage, } = useSelector(
+    (state: RootState) => state.background,
   );
 
   useEffect(() => {

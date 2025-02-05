@@ -18,7 +18,6 @@ export default function SoundSkinsPage(): React.JSX.Element {
 
   return (
     <div>
-      <h1>selected sounds</h1>
       {groupedSounds.length > 0 ? (
         groupedSounds.map((group, index) => (
           <SelectedSoundCard

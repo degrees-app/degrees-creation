@@ -1,11 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import ballReducer from './entities/ball/model/ballSlice';
-import interfaceReducer from './entities/interface/model/interfaceSlice';
-import backgroundReducer from './entities/background/model/backgroundSlice';
+import ballReducer from '../entities/ball/model/ballSlice';
+import interfaceReducer from '../entities/interface/model/interfaceSlice';
+import backgroundReducer from '../entities/background/model/backgroundSlice';
 // import soundReducer from '../entities/sound/model/soundSlice'
-import { skinApiSlice } from './entities/skin/api/skin';
+import { skinApiSlice } from '../entities/skin/api/skin';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { soundApiSlice } from './entities/sound/api/sound';
+import { soundApiSlice } from '../entities/sound/api/sound';
+import { categoryApiSlice } from '../entities/categories/api/category';
 // import { ballApiSlice } from '../entities/ball/model/ballSlice';
 
 export const store = configureStore({
@@ -16,12 +17,14 @@ export const store = configureStore({
     // Редьюсеры категорий
     [skinApiSlice.reducerPath]: skinApiSlice.reducer,
     [soundApiSlice.reducerPath]: soundApiSlice.reducer,
+    [categoryApiSlice.reducerPath]: categoryApiSlice.reducer
     // [ballApiSlice.reducerPath]: ballApiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(skinApiSlice.middleware)
-      .concat(soundApiSlice.middleware),
+      .concat(soundApiSlice.middleware)
+      .concat(categoryApiSlice.middleware)
   // .concat(ballApiSlice.middleware),
 });
 
