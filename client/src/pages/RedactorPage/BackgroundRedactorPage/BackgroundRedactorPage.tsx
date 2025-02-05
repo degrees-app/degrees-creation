@@ -1,4 +1,4 @@
-import  BackgroundForm  from '../../../widgets/BackgroundForm/BackgroundForm';
+import { BackgroundForm } from '../../../widgets/BackgroundForm/BackgroundForm';
 import { CanvasPhoneFrame } from '../../../entities/interface/ui/CanvasPhoneFlam';
 import { Box } from '@mui/material';
 

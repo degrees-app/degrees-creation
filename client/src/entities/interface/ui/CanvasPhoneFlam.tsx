@@ -15,23 +15,30 @@ export const CanvasPhoneFrame = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Очищаем canvas перед перерисовкой
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Рисуем фон (имитация экрана телефона)
-    ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // 🖼 Фон: картинка или цвет
+    ctx.filter = `brightness(${brightness}) contrast(${contrast})`;
+    if (backgroundImage) {
+      const img = new Image();
+      img.src = backgroundImage;
+      img.onload = () => {
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      };
+    } else {
+      ctx.fillStyle = backgroundColor;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    ctx.filter = 'none';
 
-    // Рисуем границы телефона
+    // 🔥 Границы экрана
     ctx.strokeStyle = 'white';
     ctx.lineWidth = 10;
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
-    // Устанавливаем шрифт и цвет для всех элементов
+    // 🎨 Шрифты и элементы
     ctx.fillStyle = textStyle.color;
     ctx.font = `${textStyle.fontWeight} 18px ${textStyle.fontFamily}`;
-
-    // Верхний левый угол (градусы)
     ctx.fillText(degrees, 30, 50);
 
     // 🔥 Полые кружки (по аналогии с числами справа)
@@ -43,23 +50,19 @@ export const CanvasPhoneFrame = () => {
     ctx.fillText(`${number1}°`, canvas.width - 80, 50);
     ctx.fillText(`${number2}°`, canvas.width - 55, 80);
 
-    // Полый круг по центру (используем textStyle.color)
+    // 🔵 Полый круг в центре
     ctx.beginPath();
     ctx.arc(canvas.width / 2, canvas.height * 0.5, 15, 0, Math.PI * 2);
     ctx.strokeStyle = textStyle.color;
     ctx.lineWidth = 6;
     ctx.stroke();
 
-    // Линия под кругом (используем textStyle.color)
-    ctx.fillRect(0, canvas.height * 0.65, canvas.width, 3);
+    // 🔥 Нижняя панель элементов
+    const panelY = canvas.height - 100;
+    const panelX = canvas.width / 2 - 95;
+    ctx.lineWidth = 2;
 
-    // 🔥 Нижняя панель (поднята выше и центрирована)
-    const panelY = canvas.height - 100; // Подняли выше
-    const panelX = canvas.width / 2 - 95; // Центрируем панель
-
-    ctx.lineWidth = 2; // 🔥 Сделал линии тоньше
-
-    // 📌 1. Полый треугольник (tocker)
+    // 🔺 Треугольник "tocker"
     ctx.beginPath();
     ctx.moveTo(panelX - 20, panelY - 20); // Верхняя точка
     ctx.lineTo(panelX + 25, panelY + 10); // Правая нижняя точка
@@ -70,10 +73,10 @@ export const CanvasPhoneFrame = () => {
     // Подпись "tocker" (ниже)
     ctx.fillText('tocker', panelX - 20, panelY + 30);
 
-    // 📌 2. Слеш `/` (degree)
+    // 📏 Слеш "/"
     ctx.beginPath();
-    ctx.moveTo(panelX + 80, panelY + 10); // Начало слеша
-    ctx.lineTo(panelX + 110, panelY - 20); // Конец слеша
+    ctx.moveTo(panelX + 80, panelY + 10);
+    ctx.lineTo(panelX + 110, panelY - 20);
     ctx.stroke();
 
     //кружок degree
@@ -82,13 +85,12 @@ export const CanvasPhoneFrame = () => {
     // Подпись "degree" (ниже)
     ctx.fillText('degree', panelX + 65, panelY + 30);
 
-    // 📌 3. Полый кружок, перечеркнутый слешами (angles)
+    // 🔘 Полый кружок с крестом "angles"
     ctx.beginPath();
     ctx.arc(panelX + 175, panelY, 12, 0, Math.PI * 2);
     ctx.stroke();
-
     ctx.beginPath();
-    ctx.moveTo(panelX + 150, panelY - 10); // Первый слеш
+    ctx.moveTo(panelX + 150, panelY - 10);
     ctx.lineTo(panelX + 200, panelY + 10);
     ctx.stroke();
 

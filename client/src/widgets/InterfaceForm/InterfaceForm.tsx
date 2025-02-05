@@ -20,8 +20,7 @@ const fontFamilies = [
 // Доступные варианты жирности шрифта
 const fontWeights = [
   { label: 'thin', value: '100' },
-  { label: 'ordinary', value: '500' },
-  { label: 'bold', value: '1000' },
+  { label: 'bold', value: '900' },
 ];
 
 export const InterfaceForm = () => {
