@@ -3,9 +3,7 @@
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Interface extends Model {
-    static associate({ Skin }) {
-      this.hasMany(Skin, { foreignKey: '' });
-    }
+    static associate(model) {}
   }
 
   Interface.init(
