@@ -9,19 +9,25 @@ import { FindOneBall } from '../../../entities/ball/model/ballThunk';
 import { useParams } from 'react-router';
 
 export const OneBallSkinPage = () => {
-
-  const {oneball} = useAppSelector((state) => state.ball);
+  const { oneball } = useAppSelector((state) => state.ball);
   const dispatch = useAppDispatch();
   const { id } = useParams();
+
+  
+
   useEffect(() => {
     if (id) {
       void dispatch(FindOneBall(id));
     }
   }, [id, dispatch]);
-  console.log(oneball)
-  
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    if (!oneball) return; // Прекращаем выполнение, если oneball не загружен
+
     let wireframe, renderer, scene, camera, controls;
     let wireframe1;
     let matLine, matLineBasic;
@@ -55,30 +61,36 @@ export const OneBallSkinPage = () => {
       controls.minDistance = 10;
       controls.maxDistance = 500;
 
-        switch (oneball.shape) {
-          case 'Sphere':
-            geo = new THREE.SphereGeometry(16, 32, 32);
-            break;
-          case 'Cube':
-            geo = new THREE.BoxGeometry(32, 32, 32);
-            break;
-          case 'Cylinder':
-            geo = new THREE.CylinderGeometry(10, 10, 32, 32);
-            break;
-          case 'Cone':
-            geo = new THREE.ConeGeometry(10, 32, 32);
-            break;
-          case 'Torus':
-            geo = new THREE.TorusGeometry(10, 5, 32, 100);
-            break;
-        }
+      // Проверка на наличие shape
+      if (!oneball.shape) return;
+
+      switch (oneball.shape) {
+        case 'Sphere':
+          geo = new THREE.SphereGeometry(16, 32, 32);
+          break;
+        case 'Cube':
+          geo = new THREE.BoxGeometry(32, 32, 32);
+          break;
+        case 'Cylinder':
+          geo = new THREE.CylinderGeometry(10, 10, 32, 32);
+          break;
+        case 'Cone':
+          geo = new THREE.ConeGeometry(10, 32, 32);
+          break;
+        case 'Torus':
+          geo = new THREE.TorusGeometry(10, 5, 32, 100);
+          break;
+        default:
+          return; // Если форма не определена, выходим
+      }
+
       const geometry = new WireframeGeometry2(geo);
 
       matLine = new LineMaterial({
         color: oneball.color,
         linewidth: oneball.width,
         transparent: true,
-        opacity:oneball.opacity
+        opacity: oneball.opacity,
       });
 
       wireframe = new Wireframe(geometry, matLine);
@@ -134,7 +146,6 @@ export const OneBallSkinPage = () => {
       window.removeEventListener('resize', onWindowResize);
     };
   }, [oneball]);
-  
 
   return (
     <div style={{ display: 'flex', height: '100vh', width: '100vw' }}>
