@@ -17,23 +17,82 @@ module.exports = {
         title: 'Ball',
       },
     ]);
+    await queryInterface.bulkInsert('Balls', [
+      {
+        type: 'Color1',
+      },
+      {
+        type: 'Color2',
+      },
+      {
+        type: 'Color3',
+      },
+      {
+        type: 'Color4',
+      },
+    ]);
+    await queryInterface.bulkInsert('Categories', [
+      {
+        name: 'ball.',
+      },
+      {
+        name: 'line.',
+      },
+      {
+        name: 'interface.',
+      },
+    ]);
     await queryInterface.bulkInsert('Sounds', [
       {
-        type: 'sound 1',
+        type: 'sound. ball1',
         url: '/sounds/zvuk1.mp3',
+        categoryId: 1,
       },
       {
-        type: 'sound 2',
+        type: 'sound. ball2',
         url: '/sounds/zvuk2.mp3',
+        categoryId: 1,
       },
       {
-        type: 'sound 3',
+        type: 'sound. ball3',
         url: '/sounds/zvuk3.mp3',
+        categoryId: 1,
       },
       {
-        type: 'sound 4',
-        url: '/sounds/zvuk4.mp3',
+        type: 'sound. line1',
+        url: '/sounds/zvuk1.mp3',
+        categoryId: 2,
       },
+      {
+        type: 'sound. line2',
+        url: '/sounds/zvuk2.mp3',
+        categoryId: 2,
+      },
+      {
+        type: 'sound. line3',
+        url: '/sounds/zvuk3.mp3',
+        categoryId: 2,
+      },
+      {
+        type: 'sound. interface1',
+        url: '/sounds/zvuk4.mp3',
+        categoryId: 3,
+      },
+      {
+        type: 'sound. interface2',
+        url: '/sounds/zvuk5.mp3',
+        categoryId: 3,
+      },
+      {
+        type: 'sound. interface3',
+        url: '/sounds/zvuk6.mp3',
+        categoryId: 3,
+      },
+      // {
+      //   type: 'sound. 4',
+      //   url: '/sounds/zvuk4.mp3',
+      //   categoryId: 1,
+      // },
     ]);
   },
 

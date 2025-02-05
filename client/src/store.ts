@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import ballReducer from '../entities/ball/model/ballSlice';
-import interfaceReducer from '../entities/interface/model/interfaceSlice';
-import backgroundReducer from '../entities/background/model/backgroundSlice';
+import ballReducer from './entities/ball/model/ballSlice';
+import interfaceReducer from './entities/interface/model/interfaceSlice';
+import backgroundReducer from './entities/background/model/backgroundSlice';
 // import soundReducer from '../entities/sound/model/soundSlice'
-import { skinApiSlice } from '../entities/skin/api/skin';
+import { skinApiSlice } from './entities/skin/api/skin';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { soundApiSlice } from '../entities/sound/api/sound';
+import { soundApiSlice } from './entities/sound/api/sound';
 // import { ballApiSlice } from '../entities/ball/model/ballSlice';
 
 export const store = configureStore({
