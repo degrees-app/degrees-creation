@@ -17,12 +17,23 @@ const fontFamilies = [
   'Trebuchet MS',
 ];
 
+// Доступные варианты жирности шрифта
+const fontWeights = [
+  { label: 'thin', value: '100' },
+  { label: 'ordinary', value: '500' },
+  { label: 'bold', value: '1000' },
+];
+
 export const InterfaceForm = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { textStyle } = useSelector((state: RootState) => state.interface);
 
   const handleFontChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     dispatch(setTextStyle({ fontFamily: event.target.value as string }));
+  };
+
+  const handleFontWeightChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    dispatch(setTextStyle({ fontWeight: event.target.value as string }));
   };
 
   const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,6 +59,7 @@ export const InterfaceForm = () => {
       const formData = new FormData();
       formData.append('file', blob, 'canvas.png'); // 📌 Отправляем `canvas` как файл
       formData.append('fontFamily', textStyle.fontFamily);
+      formData.append('fontWeight', textStyle.fontWeight);
       formData.append('color', textStyle.color);
 
       try {
@@ -69,7 +81,7 @@ export const InterfaceForm = () => {
   return (
     <Box sx={{ width: 300, padding: 2, border: '1px solid #ccc', borderRadius: 2 }}>
       {/* Выбор шрифта */}
-      <InputLabel sx={{ color: 'white' }}>Стиль шрифта</InputLabel>
+      <InputLabel sx={{ color: 'white' }}>style</InputLabel>
       <Select
         value={textStyle.fontFamily}
         onChange={handleFontChange}
@@ -83,8 +95,23 @@ export const InterfaceForm = () => {
         ))}
       </Select>
 
+      {/* Выбор жирности шрифта */}
+      <InputLabel sx={{ mt: 2, color: 'white' }}>font boldness</InputLabel>
+      <Select
+        value={textStyle.fontWeight}
+        onChange={handleFontWeightChange}
+        fullWidth
+        sx={{ mt: 1, backgroundColor: 'white', color: 'black' }}
+      >
+        {fontWeights.map((weight) => (
+          <MenuItem key={weight.value} value={weight.value}>
+            {weight.label}
+          </MenuItem>
+        ))}
+      </Select>
+
       {/* Выбор цвета */}
-      <InputLabel sx={{ mt: 2, color: 'white' }}>Цвет текста</InputLabel>
+      <InputLabel sx={{ mt: 2, color: 'white' }}>Color</InputLabel>
       <input
         type="color"
         value={textStyle.color}
@@ -94,7 +121,7 @@ export const InterfaceForm = () => {
 
       {/* Кнопка сохранения */}
       <Button variant="contained" fullWidth onClick={handleSave} sx={{ mt: 2 }}>
-        Сохранить
+      soh
       </Button>
     </Box>
   );

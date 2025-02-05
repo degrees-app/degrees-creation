@@ -6,6 +6,7 @@ const initialState: InterfaceState = {
   textStyle: {
     fontFamily: 'Arial',
     color: '#ffffff',
+    fontWeight: '400',
   },
   degrees: 'degrees',
   number1: '1,235',

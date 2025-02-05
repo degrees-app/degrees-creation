@@ -12,19 +12,14 @@ export const InterfaceSkinsPage = () => {
 
     fetchInterfaces();
   }, []);
+
   return (
-    <div>
-      <h2>Сохраненные интерфейсы</h2>
-      <div>
-        {interfaces.map((intf, index) => (
-          <div key={index}>
-            <img src={`/img/${intf.image}`} alt="Saved Canvas" width={300} height={600} />
-            <p>
-              Шрифт: {intf.fontFamily}, Цвет: {intf.color}
-            </p>
-          </div>
-        ))}
-      </div>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px', padding: '20px', justifyContent: 'center' }}>
+      {interfaces.map((intf, index) => (
+        <div key={index} style={{ display: 'flex', justifyContent: 'center' }}>
+          <img src={`/img/${intf.image}`} alt="Saved Canvas" width={300} height={600} />
+        </div>
+      ))}
     </div>
   );
 };
