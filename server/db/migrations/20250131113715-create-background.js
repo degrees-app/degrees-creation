@@ -10,8 +10,24 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      type: {
-        type: Sequelize.STRING,
+      backgroundImage: {
+        type: Sequelize.STRING, // Путь к загруженному изображению
+        allowNull: true,
+      },
+      backgroundColor: {
+        type: Sequelize.STRING, // HEX-код цвета фона
+        allowNull: false,
+        defaultValue: '#000000',
+      },
+      brightness: {
+        type: Sequelize.FLOAT, // Значение яркости (от 0.5 до 2)
+        allowNull: false,
+        defaultValue: 1,
+      },
+      contrast: {
+        type: Sequelize.FLOAT, // Значение контраста (от 0.5 до 2)
+        allowNull: false,
+        defaultValue: 1,
       },
       createdAt: {
         type: Sequelize.DATE,

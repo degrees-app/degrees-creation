@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { RootState } from '../../../app/store';
+import { RootState } from '../../../store';
 import { InterfaceState } from '../types/interfaceTypes';
 
 const API_URL = '/api/interface';

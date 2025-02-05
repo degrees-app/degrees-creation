@@ -5,6 +5,9 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { LineMaterial } from 'three/examples/jsm/lines/LineMaterial.js';
 import { Wireframe } from 'three/examples/jsm/lines/Wireframe.js';
 import { WireframeGeometry2 } from 'three/examples/jsm/lines/WireframeGeometry2.js';
+import { useAppDispatch, useAppSelector } from '../../../shared/lib/hooks';
+import { CreateBallCard } from '../../../entities/ball/model/ballThunk';
+import { BallSchema } from '../../../entities/ball/types/ballTypes';
 
 export const BallRedactorPage = () => {
   const guiRef = useRef(null); // Ссылка на контейнер для GUI
@@ -18,15 +21,8 @@ export const BallRedactorPage = () => {
     shape: 'Sphere',
   });
 
-  const [dataToSend, setDataToSend] = useState({
-    lineType: params['line type'],
-    width: params['width (px)'],
-    dashed: params.dashed,
-    dashScale: params['dash scale'],
-    dashGap: params['dash / gap'],
-    color: params.color,
-    shape: params.shape,
-  });
+  const ball = useAppSelector((state) => state.ball);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     let wireframe, renderer, scene, camera, camera2, controls;
@@ -50,7 +46,12 @@ export const BallRedactorPage = () => {
 
       scene = new THREE.Scene();
 
-      camera = new THREE.PerspectiveCamera(40, window.innerWidth * 0.75 / window.innerHeight, 1, 1000);
+      camera = new THREE.PerspectiveCamera(
+        40,
+        (window.innerWidth * 0.75) / window.innerHeight,
+        1,
+        1000,
+      );
       camera.position.set(-50, 0, 50);
 
       camera2 = new THREE.PerspectiveCamera(40, 1, 1, 1000);
@@ -60,7 +61,7 @@ export const BallRedactorPage = () => {
       controls.minDistance = 10;
       controls.maxDistance = 500;
 
-      geo = new THREE.IcosahedronGeometry(20, 1);
+      geo = new THREE.SphereGeometry(10, 32, 32);
       const geometry = new WireframeGeometry2(geo);
 
       matLine = new LineMaterial({
@@ -192,7 +193,27 @@ export const BallRedactorPage = () => {
           updateShape(val);
         });
 
-      gui.add({ add: () => addShape() }, 'add').name('Добавить');
+      gui
+        .add(
+          {
+            add: () => {
+              const initialPosts = 
+                {
+                  lineType: params['line type'],
+                  width: params['width (px)'],
+                  dashed: params.dashed,
+                  dashScale: params['dash scale'],
+                  dashGap: params['dash / gap'],
+                  color: params.color,
+                  shape: params.shape,
+                }
+              
+              dispatch(CreateBallCard(initialPosts));
+            },
+          },
+          'add',
+        )
+        .name('Добавить');
 
       function updateShape(shape) {
         let geometry;
@@ -219,20 +240,6 @@ export const BallRedactorPage = () => {
         wireframe1.geometry.dispose();
         wireframe1.geometry = new THREE.WireframeGeometry(geometry);
         wireframe1.computeLineDistances();
-      }
-
-      function addShape() {
-        setDataToSend({
-          lineType: params['line type'],
-          width: params['width (px)'],
-          dashed: params.dashed,
-          dashScale: params['dash scale'],
-          dashGap: params['dash / gap'],
-          color: params.color,
-          shape: params.shape,
-        });
-
-        console.log('Данные для отправки на сервер:', dataToSend);
       }
     }
 
