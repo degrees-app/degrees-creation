@@ -16,13 +16,10 @@ module.exports = (sequelize, DataTypes) => {
 
   Ball.init(
     {
-      lineType: DataTypes.INTEGER,
       width:DataTypes.FLOAT,
-      dashed:DataTypes.BOOLEAN,
       color:DataTypes.INTEGER,
-      dashScale:DataTypes.FLOAT,
-      dashGap:DataTypes.INTEGER,
       shape:DataTypes.STRING,
+      opacity: DataTypes.FLOAT,
     },
     {
       sequelize,

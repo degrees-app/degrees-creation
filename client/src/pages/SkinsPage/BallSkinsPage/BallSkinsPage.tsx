@@ -4,6 +4,7 @@ import { BallCard } from '../../../entities/ball/ui/BallCard';
 import { useAppDispatch, useAppSelector } from '../../../shared/lib/hooks';
 import { fetchBallCards } from '../../../entities/ball/model/ballThunk';
 import './BallSkinsPage.css';
+import { Link } from 'react-router';
 
 export default function BallSkinsPage(): React.JSX.Element {
   const { ball, loading } = useAppSelector((state) => state.ball);
@@ -38,9 +39,9 @@ export default function BallSkinsPage(): React.JSX.Element {
       <div style ={{display:'flex', justifyContent:'center',alignItems:'center',flexWrap:'wrap',gap:'50px'}}>
         {currentCards.length > 0 ? (
           currentCards.map((card) => (
-            <div key={card.id} >
+            <Link to={`/skins/ball/${card.id}`}> <div key={card.id}>
               <BallCard card={card} />
-            </div>
+            </div></Link>
           ))
         ) : (
           <Col>

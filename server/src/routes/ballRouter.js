@@ -15,25 +15,22 @@ ballRouter
   })
   .post(async (req, res) => {
     try {
-      const { lineType, width, dashed, color, dashScale, dashGap, shape } = req.body;
+      const { width, color,shape, opacity } = req.body;
       const ball = await Ball.create({
-        lineType,
         width,
-        dashed,
         color,
-        dashScale,
-        dashGap,
         shape,
+        opacity
       });
       return res.status(201).json(ball);
     } catch (error) {
       return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
     }
   });
-ballRouter.route('/:id').put(async (req, res) => {
+ballRouter.route('/:id').get(async (req, res) => {
   try {
     const { id } = req.params;
-    const ball = await Ball.findByPk(id);
+    const ball = await Ball.findOne({where:{id}});
     if (!ball) {
       return res.status(404).json({ text: 'Объект не найден' });
     }

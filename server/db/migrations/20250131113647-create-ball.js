@@ -10,32 +10,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      lineType: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
       width: {
         type: Sequelize.FLOAT,
-        allowNull: false,
-      },
-      dashed: {
-        type: Sequelize.BOOLEAN,
         allowNull: false,
       },
       color: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      dashScale: {
-        type: Sequelize.FLOAT,
-        allowNull: false,
-      },
-      dashGap: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
       shape: {
         type: Sequelize.STRING,
+        allowNull: false,
+      },
+      opacity: {
+        type: Sequelize.FLOAT,
         allowNull: false,
       },
       createdAt: {
