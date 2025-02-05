@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../app/store';
+import { RootState } from '../../../store';
 
 export const CanvasPhoneFrame = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const { textStyle, degrees, number1, number2 } = useSelector(
-    (state: RootState) => state.interface
+    (state: RootState) => state.interface,
   );
 
   useEffect(() => {
@@ -35,9 +35,9 @@ export const CanvasPhoneFrame = () => {
     ctx.fillText(degrees, 30, 50);
 
     // 🔥 Полые кружки (по аналогии с числами справа)
-    ctx.fillText(`°`, canvas.width -270, 80);
-    ctx.fillText(`°`, canvas.width -260, 80);
-    ctx.fillText(`°`, canvas.width -250, 80);
+    ctx.fillText(`°`, canvas.width - 270, 80);
+    ctx.fillText(`°`, canvas.width - 260, 80);
+    ctx.fillText(`°`, canvas.width - 250, 80);
 
     // Верхний правый угол (числа)
     ctx.fillText(`${number1}°`, canvas.width - 80, 50);
@@ -61,14 +61,14 @@ export const CanvasPhoneFrame = () => {
 
     // 📌 1. Полый треугольник (tocker)
     ctx.beginPath();
-    ctx.moveTo(panelX -20, panelY - 20); // Верхняя точка
+    ctx.moveTo(panelX - 20, panelY - 20); // Верхняя точка
     ctx.lineTo(panelX + 25, panelY + 10); // Правая нижняя точка
     ctx.lineTo(panelX - 20, panelY + 10); // Левая нижняя точка
     ctx.closePath();
     ctx.stroke();
 
     // Подпись "tocker" (ниже)
-    ctx.fillText("tocker", panelX - 20, panelY + 30);
+    ctx.fillText('tocker', panelX - 20, panelY + 30);
 
     // 📌 2. Слеш `/` (degree)
     ctx.beginPath();
@@ -77,10 +77,10 @@ export const CanvasPhoneFrame = () => {
     ctx.stroke();
 
     //кружок degree
-    ctx.fillText(`O`, canvas.width -165, 495);
+    ctx.fillText(`O`, canvas.width - 165, 495);
 
     // Подпись "degree" (ниже)
-    ctx.fillText("degree", panelX + 65, panelY + 30);
+    ctx.fillText('degree', panelX + 65, panelY + 30);
 
     // 📌 3. Полый кружок, перечеркнутый слешами (angles)
     ctx.beginPath();
@@ -93,10 +93,15 @@ export const CanvasPhoneFrame = () => {
     ctx.stroke();
 
     // Подпись "angles" (ниже)
-    ctx.fillText("angles", panelX + 150, panelY + 30);
+    ctx.fillText('angles', panelX + 150, panelY + 30);
   }, [textStyle, degrees, number1, number2]); // Обновляем canvas при изменении состояния
 
   return (
-    <canvas ref={canvasRef} width={300} height={600} style={{ borderRadius: '40px', border: '2px solid white' }} />
+    <canvas
+      ref={canvasRef}
+      width={300}
+      height={600}
+      style={{ borderRadius: '40px', border: '2px solid white' }}
+    />
   );
 };
