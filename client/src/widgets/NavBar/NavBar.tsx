@@ -9,13 +9,15 @@ export default function Header(): React.JSX.Element {
   return (
     <Navbar className="navbar" variant="dark">
       <Container>
-        <Navbar.Brand className="navbar-brand">Degrees</Navbar.Brand>
+        <Navbar.Brand className="navbar-brand">Degrees°
+        <div style={{fontSize:'10px'}}>creation platform</div>
+        </Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link as={RouterLink} to="/skins" className="nav-link">
-            skins.
-          </Nav.Link>
           <Nav.Link as={RouterLink} to="/redactor" className="nav-link">
-            redactor.
+            create
+          </Nav.Link>
+          <Nav.Link as={RouterLink} to="/skins" className="nav-link">
+            gallery
           </Nav.Link>
         </Nav>
       </Container>

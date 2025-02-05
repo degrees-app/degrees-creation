@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       color:DataTypes.INTEGER,
       shape:DataTypes.STRING,
       opacity: DataTypes.FLOAT,
+      author: DataTypes.STRING
     },
     {
       sequelize,

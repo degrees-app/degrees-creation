@@ -17,20 +17,7 @@ module.exports = {
         title: 'Ball',
       },
     ]);
-    await queryInterface.bulkInsert('Balls', [
-      {
-        type: 'Color1',
-      },
-      {
-        type: 'Color2',
-      },
-      {
-        type: 'Color3',
-      },
-      {
-        type: 'Color4',
-      },
-    ]);
+
     await queryInterface.bulkInsert('Categories', [
       {
         name: 'ball.',

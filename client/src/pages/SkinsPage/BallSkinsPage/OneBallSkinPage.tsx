@@ -15,6 +15,7 @@ export const OneBallSkinPage = () => {
 
   
 
+
   useEffect(() => {
     if (id) {
       void dispatch(FindOneBall(id));
@@ -148,18 +149,20 @@ export const OneBallSkinPage = () => {
   }, [oneball]);
 
   return (
-    <div style={{ display: 'flex', height: '100vh', width: '100vw' }}>
+    <div style={{ display: 'flex', height: '100vh', width: '100vw', flexDirection:'column' }}>
       <div
         id="three-container"
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+
           height: '750px',
           width: '1200px',
         }}
       />
       <div />
+      <h1 style={{display:'flex',color:'white',justifyContent:'center', width:'1200px'}}>author: {oneball.author}</h1>
     </div>
   );
 };

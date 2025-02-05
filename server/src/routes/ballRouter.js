@@ -15,12 +15,13 @@ ballRouter
   })
   .post(async (req, res) => {
     try {
-      const { width, color,shape, opacity } = req.body;
+      const { width, color,shape, opacity, author } = req.body;
       const ball = await Ball.create({
         width,
         color,
         shape,
-        opacity
+        opacity,
+        author
       });
       return res.status(201).json(ball);
     } catch (error) {
