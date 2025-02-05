@@ -5,7 +5,7 @@ import backgroundReducer from '../entities/background/model/backgroundSlice';
 
 import { skinApiSlice } from '../entities/skin/api/skin';
 import { soundApiSlice } from '../entities/sound/api/sound';
-import { backgroundApiSlice } from '../entities/background/model/backgroundApiSlice'; // ✅ Добавили API для фона
+
 
 import { setupListeners } from '@reduxjs/toolkit/query';
 
@@ -18,7 +18,6 @@ export const store = configureStore({
     // ✅ Подключаем API Slice'ы
     [skinApiSlice.reducerPath]: skinApiSlice.reducer,
     [soundApiSlice.reducerPath]: soundApiSlice.reducer,
-    [backgroundApiSlice.reducerPath]: backgroundApiSlice.reducer, // ✅ API для фона
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
