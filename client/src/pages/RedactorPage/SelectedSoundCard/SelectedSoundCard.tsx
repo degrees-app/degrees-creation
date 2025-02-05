@@ -14,7 +14,6 @@ export default function SelectedSoundCard({
 }: SelectedSoundsCardProps): React.JSX.Element {
   return (
     <Card className={style.card}>
-      <Card.Header className={style.cardHeader}>selected sounds</Card.Header>
       <Card.Body className={style.cardBody}>
         {selectedSounds.map((sound) => (
           <div key={sound.id} className={style.selectedSoundItem}>

@@ -18,6 +18,8 @@ module.exports = {
       },
     ]);
 
+
+
     await queryInterface.bulkInsert('Categories', [
       {
         name: 'ball.',

@@ -18,7 +18,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/api/backround', backroundRouter);
+app.use('/api/backrounds', backroundRouter);
 app.use('/api/skins', skinsRouter);
 app.use('/api/balls', ballRouter);
 app.use('/api/interfaces', interfaceRouter);

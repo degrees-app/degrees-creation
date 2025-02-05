@@ -37,7 +37,6 @@ export default function RedactorPage() {
           sound.
         </Typography>
       </Box>
-
       {/* Здесь будет отображаться выбранный редактор */}
       <Box sx={{ border: '1px solid #ccc', padding: 3, borderRadius: 2, minHeight: 400 }}>
         <Outlet />

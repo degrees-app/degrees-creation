@@ -9,6 +9,7 @@ export default function Header(): React.JSX.Element {
   return (
     <Navbar className="navbar" variant="dark">
       <Container>
+
         <Navbar.Brand className="navbar-brand">Degrees°
         <div style={{fontSize:'10px'}}>creation platform</div>
         </Navbar.Brand>
@@ -18,6 +19,7 @@ export default function Header(): React.JSX.Element {
           </Nav.Link>
           <Nav.Link as={RouterLink} to="/skins" className="nav-link">
             gallery
+
           </Nav.Link>
         </Nav>
       </Container>
