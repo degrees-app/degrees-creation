@@ -22,7 +22,7 @@ export const CreateBallCard = createAsyncThunk(
       try {
         const { data } = await axiosInstance.post('/balls',formData)
         console.log(BallSchema.parse(data))
-        return BallSchema.parse(data);
+        return BallObjectSchema.parse(data);
       } catch (error) {
         return rejectWithValue(
           error instanceof Error ? error.message : 'Что-то пошло не так',

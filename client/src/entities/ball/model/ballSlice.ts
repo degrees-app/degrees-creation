@@ -1,17 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { BallArrayType, BallObjectType } from '../types/ballTypes';
+import { BallArrayType, BallObjectType, ParamsObjectType } from '../types/ballTypes';
 import { CreateBallCard, fetchBallCards, FindOneBall } from './ballThunk';
 
 type ballSliceType = {
   ball: BallArrayType;
   oneball: BallObjectType;
+  params: ParamsObjectType;
+  currentPage: number;
   loading: boolean;
   error: string | null;
 };
 
 const initialState: ballSliceType = {
   ball: [],
+  currentPage: 1,
+  params: {
+    'width (px)': 5,
+    color: 0x4080ff,
+    shape: 'Sphere',
+    opacity: 1.0,
+    author: '',
+  } as ParamsObjectType,
   oneball: {} as BallObjectType,
   loading: false,
   error: null,
@@ -20,7 +30,14 @@ const initialState: ballSliceType = {
 export const ballSlice = createSlice({
   name: 'ball',
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentPage: (state, action: PayloadAction<number>) => {
+      state.currentPage = action.payload;
+    },
+    setParams: (state, action: PayloadAction<ParamsObjectType>) => {
+      state.params = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchBallCards.pending, (state) => {
@@ -44,9 +61,9 @@ export const ballSlice = createSlice({
       })
       .addCase(
         CreateBallCard.fulfilled,
-        (state, action: PayloadAction<BallArrayType>) => {
+        (state, action: PayloadAction<BallObjectType>) => {
           state.loading = false;
-          state.ball = action.payload.map((b) => ({ ...b, id: b.id || Math.random() }));
+          state.oneball = action.payload;
         },
       )
       .addCase(CreateBallCard.rejected, (state, action) => {
@@ -69,3 +86,4 @@ export const ballSlice = createSlice({
 });
 
 export default ballSlice.reducer;
+export const { setCurrentPage, setParams } = ballSlice.actions;

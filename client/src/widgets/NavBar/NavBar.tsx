@@ -9,25 +9,17 @@ export default function Header(): React.JSX.Element {
   return (
     <Navbar className="navbar" variant="dark">
       <Container>
-        <Navbar.Brand className="navbar-brand" style={{ fontSize: '2rem' }}>
-          Degrees°
+
+        <Navbar.Brand className="navbar-brand">Degrees°
+        <div style={{fontSize:'10px'}}>creation platform</div>
         </Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link
-            as={RouterLink}
-            to="/skins"
-            className="nav-link"
-            style={{ fontSize: '1.25rem', margin: '0 10px' }}
-          >
-            skins.
+          <Nav.Link as={RouterLink} to="/redactor" className="nav-link">
+            create
           </Nav.Link>
-          <Nav.Link
-            as={RouterLink}
-            to="/redactor"
-            className="nav-link"
-            style={{ fontSize: '1.25rem', margin: '0 10px' }}
-          >
-            redactor.
+          <Nav.Link as={RouterLink} to="/skins" className="nav-link">
+            gallery
+
           </Nav.Link>
         </Nav>
       </Container>

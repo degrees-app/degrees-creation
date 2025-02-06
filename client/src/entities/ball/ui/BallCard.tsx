@@ -36,25 +36,24 @@ export const BallCard = ({ card }) => {
       camera = new THREE.PerspectiveCamera(40, 500 / 500, 1, 1000);
       camera.position.set(0, 0, 120); // Установите позицию камеры
 
-      // Создание геометрии на основе выбранной формы
-      switch (params.shape) {
-        case 'Sphere':
-          geo = new THREE.SphereGeometry(10, 10, 10);
-          break;
-        case 'Cube':
-          geo = new THREE.BoxGeometry(10, 10, 10);
-          break;
-        case 'Cylinder':
-          geo = new THREE.CylinderGeometry(7, 7, 15, 32);
-          break;
-        case 'Cone':
-          geo = new THREE.ConeGeometry(7, 10, 32);
-          break;
-        case 'Torus':
-          geo = new THREE.TorusGeometry(7, 2.5, 10, 100);
-          break;
-        default:
-          geo = new THREE.SphereGeometry(10, 10, 10); // Значение по умолчанию
+        const size = 10; // Установим общий размер для всех фигур
+
+        switch (params.shape) {
+          case 'Sphere':
+            geo = new THREE.SphereGeometry(size, 32, 32);
+            break;
+          case 'Cube':
+            geo = new THREE.BoxGeometry(size, size, size, size * 4, size * 4, size * 4);
+            break;
+          case 'Cylinder':
+            geo = new THREE.CylinderGeometry(size, size, size * 2, 32, 32);
+            break;
+          case 'Cone':
+            geo = new THREE.ConeGeometry(size, size * 2, 32, 32);
+            break;
+          case 'Torus':
+            geo = new THREE.TorusGeometry(size, size /2 , 32, 100);
+            break;
       }
 
       const geometry = new WireframeGeometry2(geo);
@@ -104,6 +103,7 @@ export const BallCard = ({ card }) => {
       <div>
         <div id={containerId}/>
       </div>
+      <h1 className='author' style={{display: 'flex', justifyContent:'center', textDecoration:'none', color:'white'}}>author: {card.author}</h1>
     </div>
   );
 };
