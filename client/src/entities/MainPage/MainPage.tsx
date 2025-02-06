@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 export default function MainPage() {
   const [displayedText, setDisplayedText] = useState('');
   const [index, setIndex] = useState(0);
-  const fullText = 'Welcome to Degrees° Creative platform';
+  const fullText = 'Welcome to Degrees° Creation platform';
 
   useEffect(() => {
     if (index < fullText.length) {

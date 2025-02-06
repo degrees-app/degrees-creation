@@ -9,7 +9,7 @@ import { InterfaceRedactorPage } from '../../pages/RedactorPage/InterfaceRedacto
 import {BackgroundRedactorPage} from '../../pages/RedactorPage/BackgroundRedactorPage/BackgroundRedactorPage';
 import SoundRedactorPage from '../../pages/RedactorPage/SoundRedactorPage/SoundRedactorPage';
 import { InterfaceSkinsPage } from '../../pages/SkinsPage/InterfaceSkinsPage/InterfaceSkinsPage';
-import BackgroundSkinsPage from '../../pages/SkinsPage/BackgroundSkinsPage/BackgroundSkinsPage';
+import {BackgroundSkinsPage} from '../../pages/SkinsPage/BackgroundSkinsPage/BackgroundSkinsPage';
 import BallSkinsPage from '../../pages/SkinsPage/BallSkinsPage/BallSkinsPage';
 import {OneBallSkinPage} from '../../pages/SkinsPage/BallSkinsPage/OneBallSkinPage';
 import SoundSkinsPage from '../../pages/SkinsPage/SoundSkinsPage/SoundSkinsPage';

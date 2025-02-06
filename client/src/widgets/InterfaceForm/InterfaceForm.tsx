@@ -43,14 +43,14 @@ export const InterfaceForm = () => {
   const handleSave = async () => {
     const canvas = document.querySelector('canvas') as HTMLCanvasElement;
     if (!canvas) {
-      alert('Canvas не найден!');
+      console.error('❌ Canvas не найден!');
       return;
     }
 
     // 🔥 Преобразуем `canvas` в Blob (файл)
     canvas.toBlob(async (blob) => {
       if (!blob) {
-        alert('Ошибка при обработке canvas!');
+        console.error('❌ Ошибка при обработке canvas!');
         return;
       }
 
@@ -69,10 +69,9 @@ export const InterfaceForm = () => {
 
         if (!response.ok) throw new Error('Ошибка при сохранении');
 
-        alert('Canvas сохранен!');
+        console.log('✅ Canvas успешно сохранен!');
       } catch (error) {
-        console.error('Ошибка:', error);
-        alert('Не удалось сохранить canvas');
+        console.error('❌ Ошибка при сохранении canvas:', error);
       }
     }, 'image/png');
   };
@@ -85,7 +84,13 @@ export const InterfaceForm = () => {
         value={textStyle.fontFamily}
         onChange={handleFontChange}
         fullWidth
-        sx={{ mt: 1, backgroundColor: 'white', color: 'black' }}
+        sx={{
+          mt: 1,
+          backgroundColor: 'black',
+          color: 'white',
+          border: '1px solid white',
+          '& .MuiSelect-icon': { color: 'white' }, // Иконка выбора
+        }}
       >
         {fontFamilies.map((font) => (
           <MenuItem key={font} value={font}>
@@ -100,7 +105,13 @@ export const InterfaceForm = () => {
         value={textStyle.fontWeight}
         onChange={handleFontWeightChange}
         fullWidth
-        sx={{ mt: 1, backgroundColor: 'white', color: 'black' }}
+        sx={{
+          mt: 1,
+          backgroundColor: 'black',
+          color: 'white',
+          border: '1px solid white',
+          '& .MuiSelect-icon': { color: 'white' },
+        }}
       >
         {fontWeights.map((weight) => (
           <MenuItem key={weight.value} value={weight.value}>
@@ -110,17 +121,36 @@ export const InterfaceForm = () => {
       </Select>
 
       {/* Выбор цвета */}
-      <InputLabel sx={{ mt: 2, color: 'white' }}>Color</InputLabel>
+      <InputLabel sx={{ mt: 2, color: 'white' }}>color</InputLabel>
       <input
         type="color"
         value={textStyle.color}
         onChange={handleColorChange}
-        style={{ width: '100%', height: '40px', border: 'none', cursor: 'pointer' }}
+        style={{
+          width: '100%',
+          height: '40px',
+          backgroundColor: 'black',
+          border: '1px solid white',
+          cursor: 'pointer',
+        }}
       />
 
       {/* Кнопка сохранения */}
-      <Button variant="contained" fullWidth onClick={handleSave} sx={{ mt: 2 }}>
-        soh
+      <Button
+        variant="outlined" // Изменено на outlined для рамки
+        fullWidth
+        onClick={handleSave}
+        sx={{
+          mt: 2,
+          backgroundColor: 'black', // Черный фон
+          color: 'white', // Белый текст
+          border: '1px solid white', // Белая рамка
+          '&:hover': {
+            backgroundColor: '#333', // Цвет при наведении
+          },
+        }}
+      >
+        add
       </Button>
     </Box>
   );

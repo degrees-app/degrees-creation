@@ -4,11 +4,13 @@ const { Interface } = require('../../db/models');
 const fs = require('fs/promises');
 const sharp = require('sharp');
 const upload = require('../middlewares/multer');
-const path = require('path');
+// const path = require('path');
 
 // Сохранение изображения с параметрами
 interfaceRouter.post('/save', upload.single('file'), async (req, res) => {
   try {
+    console.log(req.file);
+    console.log(req.body);
     const { fontFamily, color } = req.body;
     if (!req.file) {
       return res.status(400).json({ error: 'Файл не загружен' });

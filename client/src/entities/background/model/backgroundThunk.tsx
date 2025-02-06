@@ -1,28 +1,21 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { BackgroundState } from '../types/backgroundTypes';
 
-export const fetchBackground = createAsyncThunk<BackgroundState>(
-  'backgrounds/fetch',
+const API_URL = '/api/backgrounds';
+
+// Получение данных из БД
+export const fetchBackgroundData = createAsyncThunk(
+  'background/fetchBackgroudData',
   async () => {
-    const response = await fetch('/api/backgrounds/get');
-    return response.json();
+    const response = await fetch(API_URL);
+    return await response.json();
   },
 );
 
-export const saveBackground = createAsyncThunk(
-  'backgrounds/save',
-  async (backgroundData: BackgroundState) => {
-    const formData = new FormData();
-    if (backgroundData.backgroundImage) {
-      formData.append('file', backgroundData.backgroundImage);
-    }
-    formData.append('backgroundColor', backgroundData.backgroundColor);
-    formData.append('brightness', backgroundData.brightness.toString());
-    formData.append('contrast', backgroundData.contrast.toString());
-
-    await fetch('/api/backgrounds/save', {
-      method: 'POST',
-      body: formData,
-    });
-  },
-);
+// Сохранение данных в БД
+export const saveBackgroundData = createAsyncThunk(
+  'background/saveBackgroundData', async (data: FormData) => {
+  await fetch(API_URL + '/save', {
+    method: 'POST',
+    body: data,
+  });
+});

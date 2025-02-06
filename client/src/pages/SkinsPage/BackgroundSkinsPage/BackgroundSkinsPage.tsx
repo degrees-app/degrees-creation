@@ -1,29 +1,25 @@
-// import { useGetBackgroundsQuery } from "../../../entities/background/model/backgroundApiSlice";
+import { useEffect, useState } from 'react';
 
-// export const BackgroundSkinsPage = () => {
-//   const { data: backgrounds = [], isLoading } = useGetBackgroundsQuery();
+export const BackgroundSkinsPage = () => {
+  const [backgrounds, setBackgrounds ] = useState([]);
 
-//   if (isLoading) return <p>Загрузка...</p>;
+  useEffect(() => {
+    const fetchBackgrounds = async () => {
+      const response = await fetch('/api/backgrounds/get');
+      const data = await response.json();
+      setBackgrounds(data);
+    };
 
-//   return (
-//     <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", padding: "20px" }}>
-//       {backgrounds.map((bg, index) => (
-//         <div key={index} style={{ width: "300px", height: "600px", borderRadius: "10px", overflow: "hidden", position: "relative" }}>
-//           {bg.backgroundImage ? (
-//             <img src={`/img/${bg.backgroundImage}`} alt="Saved Background" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-//           ) : (
-//             <div style={{ width: "100%", height: "100%", backgroundColor: bg.backgroundColor }} />
-//           )}
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
+    fetchBackgrounds();
+  }, []);
 
-import React from 'react'
-
-export default function BackgroundSkinsPage() {
   return (
-    <div>BackgroundSkinsPage</div>
-  )
-}
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px', padding: '20px', justifyContent: 'center' }}>
+      {backgrounds.map((intf, index) => (
+        <div key={index} style={{ display: 'flex', justifyContent: 'center' }}>
+          <img src={`/img/${intf.image}`} alt="Saved Canvas" width={300} height={600} />
+        </div>
+      ))}
+    </div>
+  );
+};

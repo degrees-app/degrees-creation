@@ -12,12 +12,21 @@ module.exports = {
       },
       backgroundImage: {
         type: Sequelize.STRING, // Путь к загруженному изображению
-        allowNull: true,
+        allowNull: false,
       },
       backgroundColor: {
         type: Sequelize.STRING, // HEX-код цвета фона
         allowNull: false,
         defaultValue: '#000000',
+      },
+      animationColor: {
+        type: Sequelize.STRING, // HEX-код цвета фона
+        allowNull: false,
+        defaultValue: '#000000',
+      },
+      aminationType: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       brightness: {
         type: Sequelize.FLOAT, // Значение яркости (от 0.5 до 2)

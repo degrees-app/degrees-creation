@@ -13,6 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       backgroundColor: DataTypes.STRING, // HEX-код цвета фона
       brightness: DataTypes.FLOAT, // Значение яркости (от 0.5 до 2)
       contrast: DataTypes.FLOAT, // Значение контраста (от 0.5 до 2)
+      animationType: DataTypes.STRING,
+      animationColor: DataTypes.STRING
     },
     {
       sequelize,

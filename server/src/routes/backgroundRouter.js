@@ -9,7 +9,7 @@ const backgroundRouter = express.Router();
 // 📌 Сохранение фона (изображение + цвет)
 backgroundRouter.post("/save", upload.single("file"), async (req, res) => {
   try {
-    const { backgroundColor, brightness, contrast } = req.body;
+    const { backgroundColor, brightness, contrast, animationColor, animationType } = req.body;
 
     let backgroundImage = null;
     if (req.file) {
@@ -24,6 +24,8 @@ backgroundRouter.post("/save", upload.single("file"), async (req, res) => {
       backgroundColor,
       brightness,
       contrast,
+      animationColor,
+      animationType
     });
 
     res.json(newBackground);
