@@ -14,10 +14,10 @@ export default function Header(): React.JSX.Element {
         <div style={{fontSize:'10px'}}>creation platform</div>
         </Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link as={RouterLink} to="/redactor" className="nav-link">
+          <Nav.Link as={RouterLink} to="/redactor/ball" className="nav-link">
             create
           </Nav.Link>
-          <Nav.Link as={RouterLink} to="/skins" className="nav-link">
+          <Nav.Link as={RouterLink} to="/skins/ball" className="nav-link">
             gallery
 
           </Nav.Link>

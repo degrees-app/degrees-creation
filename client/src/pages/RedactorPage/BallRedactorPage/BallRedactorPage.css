@@ -1,0 +1,11 @@
+body{
+    /* overflow-x: hidden; */
+}
+.children{
+    background-color: black;
+    font-size: 15px;
+}
+.lil-gui.root>.title{
+    background-color: black;
+    font-size: 15px;
+}

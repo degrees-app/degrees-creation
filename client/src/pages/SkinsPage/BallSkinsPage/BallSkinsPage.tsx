@@ -25,7 +25,7 @@ export default function BallSkinsPage(): React.JSX.Element {
   }
 
   if (!ball || ball.length === 0) {
-    return <div style={{ color: 'white' }}>No balls available</div>;
+    return <div style={{ color: 'white' }}>Loading...</div>;
   }
 
   const totalPages = Math.ceil(ball.length / cardsPerPage);

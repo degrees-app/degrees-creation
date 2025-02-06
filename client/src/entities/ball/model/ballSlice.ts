@@ -34,9 +34,6 @@ export const ballSlice = createSlice({
     setCurrentPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
     },
-    setParams: (state, action: PayloadAction<ParamsObjectType>) => {
-      state.params = action.payload;
-    },
   },
   extraReducers(builder) {
     builder
@@ -77,6 +74,8 @@ export const ballSlice = createSlice({
       .addCase(FindOneBall.fulfilled, (state, action: PayloadAction<BallObjectType>) => {
         state.loading = false;
         state.oneball = action.payload;
+        state.error = null;
+        
       })
       .addCase(FindOneBall.rejected, (state, action) => {
         state.loading = false;
@@ -86,4 +85,4 @@ export const ballSlice = createSlice({
 });
 
 export default ballSlice.reducer;
-export const { setCurrentPage, setParams } = ballSlice.actions;
+export const { setCurrentPage } = ballSlice.actions;

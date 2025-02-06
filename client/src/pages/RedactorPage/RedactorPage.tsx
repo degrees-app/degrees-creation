@@ -16,25 +16,25 @@ export default function RedactorPage() {
           className="link" // Применяем класс для стилей
           onClick={() => handleNavigation('/redactor/ball')}
         >
-          ball.
+          ball°
         </Typography>
         <Typography
           className="link" // Применяем класс для стилей
           onClick={() => handleNavigation('/redactor/interface')}
         >
-          interface.
+          interface°
         </Typography>
         <Typography
           className="link" // Применяем класс для стилей
           onClick={() => handleNavigation('/redactor/background')}
         >
-          background.
+          background°
         </Typography>
         <Typography
           className="link" // Применяем класс для стилей
           onClick={() => handleNavigation('/redactor/sound')}
         >
-          sound.
+          sound°
         </Typography>
       </Box>
       {/* Здесь будет отображаться выбранный редактор */}
