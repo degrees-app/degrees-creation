@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BallCard } from '../../../entities/ball/ui/BallCard';
 import { useAppDispatch, useAppSelector } from '../../../shared/lib/hooks';
 import { fetchBallCards } from '../../../entities/ball/model/ballThunk';
 import './BallSkinsPage.css';
 import { Link } from 'react-router';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Импортируем стрелки
+import { setCurrentPage } from '../../../entities/ball/model/ballSlice';
 
 export default function BallSkinsPage(): React.JSX.Element {
-  const { ball, loading } = useAppSelector((state) => state.ball);
+  const { ball, loading, currentPage } = useAppSelector((state) => state.ball);
   const dispatch = useAppDispatch();
-  
-  const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 10;
 
   useEffect(() => {
@@ -35,7 +34,7 @@ export default function BallSkinsPage(): React.JSX.Element {
     <div>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: '50px' }}>
         {ball.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage).map((card) => (
-          <Link key={card.id} to={`/skins/ball/${card.id}`} style={{textDecoration:'none'}}>
+          <Link key={card.id} to={`/skins/ball/${card.id}`} style={{ textDecoration: 'none' }}>
             <div>
               <BallCard card={card} />
             </div>
@@ -47,7 +46,7 @@ export default function BallSkinsPage(): React.JSX.Element {
       <div className='custom-pagination'>
         {currentPage > 1 && (
           <button 
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            onClick={() => dispatch(setCurrentPage(currentPage - 1))}
             className='pagination-button'
           >
             <FaChevronLeft style={{ color: 'white' }} />
@@ -56,7 +55,7 @@ export default function BallSkinsPage(): React.JSX.Element {
 
         {currentPage < totalPages && (
           <button 
-            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+            onClick={() => dispatch(setCurrentPage(currentPage + 1))}
             className='pagination-button'
           >
             <FaChevronRight style={{ color: 'white' }} />

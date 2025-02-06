@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { LineMaterial } from 'three/examples/jsm/lines/LineMaterial.js';
@@ -7,14 +7,12 @@ import { WireframeGeometry2 } from 'three/examples/jsm/lines/WireframeGeometry2.
 import { useAppDispatch, useAppSelector } from '../../../shared/lib/hooks';
 import { FindOneBall } from '../../../entities/ball/model/ballThunk';
 import { useParams } from 'react-router';
+import { BallObjectType } from '../../../entities/ball/types/ballTypes';
 
-export const OneBallSkinPage = () => {
-  const { oneball } = useAppSelector((state) => state.ball);
+export const OneBallSkinPage: React.FC = () => {
+  const { oneball } = useAppSelector((state) => state.ball) as { oneball: BallObjectType | null };
   const dispatch = useAppDispatch();
   const { id } = useParams();
-
-  
-
 
   useEffect(() => {
     if (id) {
@@ -29,13 +27,18 @@ export const OneBallSkinPage = () => {
   useEffect(() => {
     if (!oneball) return; // Прекращаем выполнение, если oneball не загружен
 
-    let wireframe, renderer, scene, camera, controls;
-    let wireframe1;
-    let matLine, matLineBasic;
+    let wireframe: Wireframe;
+    let renderer: THREE.WebGLRenderer;
+    let scene: THREE.Scene;
+    let camera: THREE.PerspectiveCamera;
+    let controls: OrbitControls;
+    let wireframe1: THREE.LineSegments;
+    let matLine: LineMaterial;
+    let matLineBasic: THREE.LineBasicMaterial;
 
-    let insetWidth;
-    let insetHeight;
-    let geo;
+    let insetWidth: number;
+    let insetHeight: number;
+    let geo: THREE.BufferGeometry;
 
     init();
 
@@ -46,7 +49,7 @@ export const OneBallSkinPage = () => {
       renderer.setClearColor(0x000000, 0.0);
 
       const threeContainer = document.getElementById('three-container');
-      threeContainer.appendChild(renderer.domElement);
+      threeContainer?.appendChild(renderer.domElement);
 
       scene = new THREE.Scene();
 
@@ -63,7 +66,7 @@ export const OneBallSkinPage = () => {
       controls.maxDistance = 500;
 
       // Проверка на наличие shape
-      if (!oneball.shape) return;
+      if (!oneball?.shape) return;
 
       switch (oneball.shape) {
         case 'Sphere':
@@ -149,20 +152,21 @@ export const OneBallSkinPage = () => {
   }, [oneball]);
 
   return (
-    <div style={{ display: 'flex', height: '100vh', width: '100vw', flexDirection:'column' }}>
+    <div style={{ display: 'flex', height: '100vh', width: '100vw', flexDirection: 'column' }}>
       <div
         id="three-container"
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-
           height: '750px',
           width: '1200px',
         }}
       />
       <div />
-      <h1 style={{display:'flex',color:'white',justifyContent:'center', width:'1200px'}}>author: {oneball.author}</h1>
+      <h1 style={{ display: 'flex', color: 'white', justifyContent: 'center', width: '1200px' }}>
+        author: {oneball?.author}
+      </h1>
     </div>
   );
 };
