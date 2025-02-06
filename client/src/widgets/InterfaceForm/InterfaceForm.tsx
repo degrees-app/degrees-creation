@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../../store';
+import { RootState, AppDispatch } from '../../app/store';
 import { setTextStyle } from '../../entities/interface/model/interfaceSlice';
 import { Box, Button, Select, MenuItem, InputLabel } from '@mui/material';
 
@@ -20,8 +20,7 @@ const fontFamilies = [
 // Доступные варианты жирности шрифта
 const fontWeights = [
   { label: 'thin', value: '100' },
-  { label: 'ordinary', value: '500' },
-  { label: 'bold', value: '1000' },
+  { label: 'bold', value: '900' },
 ];
 
 export const InterfaceForm = () => {
