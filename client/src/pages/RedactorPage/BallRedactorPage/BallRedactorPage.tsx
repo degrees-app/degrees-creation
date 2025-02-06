@@ -5,31 +5,44 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { LineMaterial } from 'three/examples/jsm/lines/LineMaterial.js';
 import { Wireframe } from 'three/examples/jsm/lines/Wireframe.js';
 import { WireframeGeometry2 } from 'three/examples/jsm/lines/WireframeGeometry2.js';
-import { useAppDispatch, useAppSelector } from '../../../shared/lib/hooks';
+import { useAppDispatch } from '../../../shared/lib/hooks';
 import { CreateBallCard } from '../../../entities/ball/model/ballThunk';
-import { BallSchema } from '../../../entities/ball/types/ballTypes';
 
-export const BallRedactorPage = () => {
-  const guiRef = useRef(null); // Ссылка на контейнер для GUI
-  const [params, setParams] = useState({
+// Определяем типы для параметров GUI
+interface Params {
+  'width (px)': number;
+  color: number;
+  shape: string;
+  opacity: number;
+  author: string;
+}
+
+export const BallRedactorPage: React.FC = () => {
+  const guiRef = useRef<HTMLDivElement | null>(null); // Ссылка на контейнер для GUI
+  const [params, setParams] = useState<Params>({
     'width (px)': 5,
     color: 0x4080ff,
     shape: 'Sphere',
     opacity: 1.0,
     author: '', // Новый параметр для имени автора
   });
-
-  const ball = useAppSelector((state) => state.ball);
+  
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    let wireframe, renderer, scene, camera, camera2, controls;
-    let wireframe1;
-    let matLine, matLineBasic;
-    let gui;
-    let insetWidth;
-    let insetHeight;
-    let geo;
+    let wireframe: Wireframe;
+    let renderer: THREE.WebGLRenderer;
+    let scene: THREE.Scene;
+    let camera: THREE.PerspectiveCamera;
+    let camera2: THREE.PerspectiveCamera;
+    let controls: OrbitControls;
+    let wireframe1: THREE.LineSegments;
+    let matLine: LineMaterial;
+    let matLineBasic: THREE.LineBasicMaterial;
+    let gui: GUI;
+    let insetWidth: number;
+    let insetHeight: number;
+    let geo: THREE.BufferGeometry;
 
     init();
 
@@ -40,7 +53,7 @@ export const BallRedactorPage = () => {
       renderer.setClearColor(0x000000, 0.0);
 
       const threeContainer = document.getElementById('three-container');
-      threeContainer.appendChild(renderer.domElement);
+      threeContainer?.appendChild(renderer.domElement);
 
       scene = new THREE.Scene();
 
@@ -120,7 +133,7 @@ export const BallRedactorPage = () => {
 
     function initGui() {
       gui = new GUI({ autoPlace: false });
-      guiRef.current.appendChild(gui.domElement);
+      guiRef.current?.appendChild(gui.domElement);
 
       gui.add(params, 'width (px)', 1, 10).onChange(function (val) {
         matLine.linewidth = val;
@@ -161,6 +174,7 @@ export const BallRedactorPage = () => {
               }
 
               const initialPosts = {
+                id:0,
                 width: params['width (px)'],
                 color: params.color,
                 shape: params.shape,
@@ -176,8 +190,9 @@ export const BallRedactorPage = () => {
         )
         .name('Add');
 
-      function updateShape(shape) {
-        let geometry;
+        let geometry: THREE.BufferGeometry;
+
+      function updateShape(shape: string) {
         const size = 10; // Установим общий размер для всех фигур
 
         switch (shape) {
@@ -194,7 +209,7 @@ export const BallRedactorPage = () => {
             geometry = new THREE.ConeGeometry(size, size * 2, 32, 32);
             break;
           case 'Torus':
-            geometry = new THREE.TorusGeometry(size, size /2 , 32, 100);
+            geometry = new THREE.TorusGeometry(size, size / 2, 32, 100);
             break;
         }
 
@@ -217,7 +232,7 @@ export const BallRedactorPage = () => {
       }
       window.removeEventListener('resize', onWindowResize);
     };
-  }, [params]);
+  }, [params,dispatch]);
 
   return (
     <div style={{ display: 'flex', height: '100vh', width: '100vw' }}>
@@ -236,3 +251,4 @@ export const BallRedactorPage = () => {
     </div>
   );
 };
+
