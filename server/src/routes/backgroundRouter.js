@@ -20,7 +20,7 @@ backgroundRouter.post("/save", upload.single("file"), async (req, res) => {
     }
 
     const newBackground = await Background.create({
-      backgroundImage,
+     image: backgroundImage,
       backgroundColor,
       brightness,
       contrast,
