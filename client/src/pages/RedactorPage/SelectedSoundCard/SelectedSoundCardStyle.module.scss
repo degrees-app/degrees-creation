@@ -7,6 +7,16 @@
   margin: 10px 10px 10px 0 !important;
 }
 
+.container {
+  justify-content: space-between;
+}
+
+.soundCardRow {
+  display: flex;
+  flex-wrap: wrap; /* Позволяет карточкам переноситься на следующую строку при недостатке места */
+  gap: 10px; /* Пробел между карточками */
+}
+
 .cardHeader {
   background-color: #f8f9fa;
   font-weight: bold;
