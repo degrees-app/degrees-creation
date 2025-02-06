@@ -178,21 +178,23 @@ export const BallRedactorPage = () => {
 
       function updateShape(shape) {
         let geometry;
+        const size = 10; // Установим общий размер для всех фигур
+
         switch (shape) {
           case 'Sphere':
-            geometry = new THREE.SphereGeometry(16, 32, 32);
+            geometry = new THREE.SphereGeometry(size, 32, 32);
             break;
           case 'Cube':
-            geometry = new THREE.BoxGeometry(32, 32, 32);
+            geometry = new THREE.BoxGeometry(size, size, size, size * 4, size * 4, size * 4);
             break;
           case 'Cylinder':
-            geometry = new THREE.CylinderGeometry(10, 10, 32, 32);
+            geometry = new THREE.CylinderGeometry(size, size, size * 2, 32, 32);
             break;
           case 'Cone':
-            geometry = new THREE.ConeGeometry(10, 32, 32);
+            geometry = new THREE.ConeGeometry(size, size * 2, 32, 32);
             break;
           case 'Torus':
-            geometry = new THREE.TorusGeometry(10, 5, 32, 100);
+            geometry = new THREE.TorusGeometry(size, size /2 , 32, 100);
             break;
         }
 
