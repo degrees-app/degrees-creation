@@ -180,7 +180,7 @@ export const BallRedactorPage: React.FC = () => {
           },
           'add',
         )
-        .name('Add');
+        .name('add');
 
         let geometry: THREE.BufferGeometry;
 

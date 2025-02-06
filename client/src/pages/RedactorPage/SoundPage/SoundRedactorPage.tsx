@@ -116,8 +116,8 @@ export default function SoundRedactorPage(): React.JSX.Element {
           </div>
         </div>
       )}
-      <button className={style.button} onClick={handleAddSounds}>
-       add.
+      <button className={style.button} style={{}} onClick={handleAddSounds}>
+       add
       </button>
     </div>
   );
