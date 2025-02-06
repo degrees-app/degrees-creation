@@ -7,6 +7,7 @@ import { Wireframe } from 'three/examples/jsm/lines/Wireframe.js';
 import { WireframeGeometry2 } from 'three/examples/jsm/lines/WireframeGeometry2.js';
 import { useAppDispatch } from '../../../shared/lib/hooks';
 import { CreateBallCard } from '../../../entities/ball/model/ballThunk';
+import './BallRedactorPage.css'
 
 // Определяем типы для параметров GUI
 interface Params {
@@ -19,7 +20,7 @@ interface Params {
 
 export const BallRedactorPage: React.FC = () => {
   const guiRef = useRef<HTMLDivElement | null>(null); // Ссылка на контейнер для GUI
-  const [params, setParams] = useState<Params>({
+  const [params] = useState<Params>({
     'width (px)': 5,
     color: 0x4080ff,
     shape: 'Sphere',
@@ -34,7 +35,6 @@ export const BallRedactorPage: React.FC = () => {
     let renderer: THREE.WebGLRenderer;
     let scene: THREE.Scene;
     let camera: THREE.PerspectiveCamera;
-    let camera2: THREE.PerspectiveCamera;
     let controls: OrbitControls;
     let wireframe1: THREE.LineSegments;
     let matLine: LineMaterial;
@@ -49,24 +49,21 @@ export const BallRedactorPage: React.FC = () => {
     function init() {
       renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setPixelRatio(window.devicePixelRatio);
-      renderer.setSize(window.innerWidth * 0.75, window.innerHeight);
+      renderer.setSize(670, 670);
       renderer.setClearColor(0x000000, 0.0);
 
-      const threeContainer = document.getElementById('three-container');
+      const threeContainer = document.querySelector('.redactor');
       threeContainer?.appendChild(renderer.domElement);
 
       scene = new THREE.Scene();
 
       camera = new THREE.PerspectiveCamera(
         40,
-        (window.innerWidth * 0.75) / window.innerHeight,
+        (670) / 670,
         1,
         1000,
       );
       camera.position.set(-50, 0, 50);
-
-      camera2 = new THREE.PerspectiveCamera(40, 1, 1, 1000);
-      camera2.position.copy(camera.position);
 
       controls = new OrbitControls(camera, renderer.domElement);
       controls.minDistance = 10;
@@ -100,8 +97,8 @@ export const BallRedactorPage: React.FC = () => {
     }
 
     function onWindowResize() {
-      const width = window.innerWidth * 0.75;
-      const height = window.innerHeight;
+      const width = 670;
+      const height = 670;
 
       renderer.setSize(width, height);
       camera.aspect = width / height;
@@ -110,13 +107,11 @@ export const BallRedactorPage: React.FC = () => {
       insetWidth = height / 4;
       insetHeight = height / 4;
 
-      camera2.aspect = insetWidth / insetHeight;
-      camera2.updateProjectionMatrix();
     }
 
     function animate() {
       renderer.setClearColor(0x000000, 0);
-      renderer.setViewport(0, 0, window.innerWidth * 0.75, window.innerHeight);
+      renderer.setViewport(0, 0, 670, 670);
       renderer.render(scene, camera);
 
       renderer.setClearColor(0x222222, 1);
@@ -124,9 +119,6 @@ export const BallRedactorPage: React.FC = () => {
       renderer.setScissorTest(true);
       renderer.setScissor(20, 20, insetWidth, insetHeight);
       renderer.setViewport(20, 20, insetWidth, insetHeight);
-      camera2.position.copy(camera.position);
-      camera2.quaternion.copy(camera.quaternion);
-      renderer.render(scene, camera2);
       renderer.setScissorTest(false);
       requestAnimationFrame(animate);
     }
@@ -200,7 +192,7 @@ export const BallRedactorPage: React.FC = () => {
             geometry = new THREE.SphereGeometry(size, 32, 32);
             break;
           case 'Cube':
-            geometry = new THREE.BoxGeometry(size, size, size, size * 4, size * 4, size * 4);
+            geometry = new THREE.BoxGeometry(size, size, size, size * 1.5, size * 1.5, size * 1.5);
             break;
           case 'Cylinder':
             geometry = new THREE.CylinderGeometry(size, size, size * 2, 32, 32);
@@ -226,7 +218,7 @@ export const BallRedactorPage: React.FC = () => {
     }
 
     return () => {
-      const threeContainer = document.getElementById('three-container');
+      const threeContainer = document.querySelector('.redactor');
       if (threeContainer) {
         threeContainer.removeChild(renderer.domElement);
       }
@@ -235,18 +227,14 @@ export const BallRedactorPage: React.FC = () => {
   }, [params,dispatch]);
 
   return (
-    <div style={{ display: 'flex', height: '100vh', width: '100vw' }}>
-      <div
+    <div className='redactor' style={{display:"flex",justifyContent:'space-around',alignItems:'center'}} >
+      {/* <div
         id="three-container"
-        style={{ width: '65%', height: '100%', position: 'relative' }}
-      />
+        style={{ width:'1100px', height:"100px" }}
+      /> */}
       <div
         ref={guiRef}
-        style={{
-          width: '35%', 
-          height: '100%',
-          overflow: 'auto', 
-        }}
+
       />
     </div>
   );

@@ -37,7 +37,7 @@ ballRouter.route('/:id').get(async (req, res) => {
     }
     return res.status(200).json(ball);
   } catch (error) {
-    return res.status(500).json({ text: 'Ошибка сервера', message: error.message });
+    return res.status(404).json({ text: 'Ошибка сервера', message: error.message });
   }
 });
 

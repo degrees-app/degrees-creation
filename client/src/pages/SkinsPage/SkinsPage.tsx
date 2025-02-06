@@ -17,25 +17,25 @@ export default function SkinsPage() {
           className="link" // Применяем класс для стилей
           onClick={() => handleNavigation('/skins/ball')}
         >
-          ball.
+          ball°
         </Typography>
         <Typography
           className="link" // Применяем класс для стилей
           onClick={() => handleNavigation('/skins/interface')}
         >
-          interface.
+          interface°
         </Typography>
         <Typography
           className="link" // Применяем класс для стилей
           onClick={() => handleNavigation('/skins/background')}
         >
-          background.
+          background°
         </Typography>
         <Typography
           className="link" // Применяем класс для стилей
           onClick={() => handleNavigation('/skins/sound')}
         >
-          sound.
+          sound°
         </Typography>
       </Box>
       <Box sx={{ border: '1px solid #ccc', padding: 3, borderRadius: 2, minHeight: 400 }}>

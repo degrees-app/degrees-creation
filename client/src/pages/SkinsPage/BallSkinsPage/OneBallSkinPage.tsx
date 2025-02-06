@@ -6,23 +6,28 @@ import { Wireframe } from 'three/examples/jsm/lines/Wireframe.js';
 import { WireframeGeometry2 } from 'three/examples/jsm/lines/WireframeGeometry2.js';
 import { useAppDispatch, useAppSelector } from '../../../shared/lib/hooks';
 import { FindOneBall } from '../../../entities/ball/model/ballThunk';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { BallObjectType } from '../../../entities/ball/types/ballTypes';
 
 export const OneBallSkinPage: React.FC = () => {
-  const { oneball } = useAppSelector((state) => state.ball) as { oneball: BallObjectType | null };
+  const { oneball , error } = useAppSelector((state) => state.ball) as { oneball: BallObjectType | null, error: string | null };
   const dispatch = useAppDispatch();
   const { id } = useParams();
+  const navigate= useNavigate()
 
   useEffect(() => {
     if (id) {
       void dispatch(FindOneBall(id));
+      if(error){
+        navigate('/*');
+      }
     }
-  }, [id, dispatch]);
+  }, [id, dispatch,error,navigate]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
 
   useEffect(() => {
     if (!oneball) return; // Прекращаем выполнение, если oneball не загружен
@@ -68,25 +73,25 @@ export const OneBallSkinPage: React.FC = () => {
       // Проверка на наличие shape
       if (!oneball?.shape) return;
 
-      switch (oneball.shape) {
-        case 'Sphere':
-          geo = new THREE.SphereGeometry(16, 32, 32);
-          break;
-        case 'Cube':
-          geo = new THREE.BoxGeometry(32, 32, 32);
-          break;
-        case 'Cylinder':
-          geo = new THREE.CylinderGeometry(10, 10, 32, 32);
-          break;
-        case 'Cone':
-          geo = new THREE.ConeGeometry(10, 32, 32);
-          break;
-        case 'Torus':
-          geo = new THREE.TorusGeometry(10, 5, 32, 100);
-          break;
-        default:
-          return; // Если форма не определена, выходим
-      }
+     const size = 10; // Установим общий размер для всех фигур
+     
+             switch (oneball.shape) {
+               case 'Sphere':
+                 geo = new THREE.SphereGeometry(size, 32, 32);
+                 break;
+               case 'Cube':
+                 geo = new THREE.BoxGeometry(size, size, size, size * 1.5, size * 1.5, size * 1.5);
+                 break;
+               case 'Cylinder':
+                 geo = new THREE.CylinderGeometry(size, size, size * 2, 32, 32);
+                 break;
+               case 'Cone':
+                 geo = new THREE.ConeGeometry(size, size * 2, 32, 32);
+                 break;
+               case 'Torus':
+                 geo = new THREE.TorusGeometry(size, size / 2, 32, 100);
+                 break;
+             }
 
       const geometry = new WireframeGeometry2(geo);
 
@@ -164,9 +169,9 @@ export const OneBallSkinPage: React.FC = () => {
         }}
       />
       <div />
-      <h1 style={{ display: 'flex', color: 'white', justifyContent: 'center', width: '1200px' }}>
+      <p style={{ display: 'flex', color: 'white', justifyContent: 'center', width: '1200px' , fontSize:'25px'}}>
         author: {oneball?.author}
-      </h1>
+      </p>
     </div>
   );
 };
