@@ -7,8 +7,8 @@ import MainPage from '../../entities/MainPage/MainPage';
 import { BallRedactorPage } from '../../pages/RedactorPage/BallRedactorPage/BallRedactorPage';
 import { InterfaceRedactorPage } from '../../pages/RedactorPage/InterfaceRedactorPage/InterfaceRedactorPage';
 
-// import BackgroundRedactorPage from '../../pages/RedactorPage/BackgroundRedactorPage/BackgroundRedactorPage';
-// import SoundRedactorPage from '../../pages/RedactorPage/SoundPage/SoundRedactorPage';
+import {BackgroundRedactorPage} from '../../pages/RedactorPage/BackgroundRedactorPage/BackgroundRedactorPage';
+import SoundRedactorPage from '../../pages/RedactorPage/SoundPage/SoundRedactorPage';
 
 import { InterfaceSkinsPage } from '../../pages/SkinsPage/InterfaceSkinsPage/InterfaceSkinsPage';
 import {BackgroundSkinsPage} from '../../pages/SkinsPage/BackgroundSkinsPage/BackgroundSkinsPage';
@@ -37,8 +37,8 @@ export default function RouterProvider(): React.JSX.Element {
         <Route path="/redactor" element={<RedactorPage />}>
           <Route path="/redactor/ball" element={<BallRedactorPage />} />
           <Route path="/redactor/interface" element={<InterfaceRedactorPage />} />
-          {/* <Route path="/redactor/background" element={<BackgroundRedactorPage />} /> */}
-          {/* <Route path="/redactor/sound" element={<SoundRedactorPage />} /> */}
+          <Route path="/redactor/background" element={<BackgroundRedactorPage />} />
+          <Route path="/redactor/sound" element={<SoundRedactorPage />} />
         </Route>
       </Route>
     </Routes>
