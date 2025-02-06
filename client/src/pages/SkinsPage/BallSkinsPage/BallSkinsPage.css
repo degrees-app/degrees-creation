@@ -1,21 +1,20 @@
-.pagination {
-    margin-top: 20px;
-    justify-content: center;
-  }
-  
-  .pagination .page-item {
-    background-color: black;
-    color: black;
-    border: 1px solid black;
-  }
-  
-  .pagination .page-item.active {
-    background-color: black;
-    color: black;
-  }
-  
-  .pagination .page-item:disabled {
-    background-color: black;
-    color: black;
-    border: 1px solid black;
-  }
+.custom-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0px;
+}
+
+.pagination-button {
+  background-color: transparent; /* Убираем фон */
+  border: none; /* Убираем границы */
+  color: white; /* Цвет текста */
+  cursor: pointer; /* Указатель при наведении */
+  margin: 0 10px; /* Отступы между кнопками */
+  font-size: 40px; /* Размер шрифта */
+}
+
+.pagination-button:disabled {
+  color: gray; /* Цвет для неактивных кнопок */
+  cursor: not-allowed; /* Указатель для неактивных кнопок */
+}

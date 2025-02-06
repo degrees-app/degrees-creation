@@ -17,6 +17,9 @@ module.exports = {
         title: 'Ball',
       },
     ]);
+
+
+
     await queryInterface.bulkInsert('Categories', [
       {
         name: 'ball.',
