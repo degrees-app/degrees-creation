@@ -40,7 +40,7 @@ backgroundRouter.post('/save', upload.single('file'), async (req, res) => {
 // 📌 Получение фонов
 backgroundRouter.get('/get', async (req, res) => {
   try {
-    const backgrounds = await Background.findAll();
+    const backgrounds = await Background.findAll({order: [['id', 'DESC']]});
     res.json(backgrounds);
   } catch (error) {
     console.error('Ошибка при получении данных:', error);

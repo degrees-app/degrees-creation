@@ -59,7 +59,6 @@ export const BackgroundForm = () => {
   const handleSave = async () => {
     const formData = new FormData();
 
-
     if (selectedFile) {
       formData.append('file', selectedFile);
     }
@@ -67,12 +66,12 @@ export const BackgroundForm = () => {
     formData.append('brightness', brightness.toString());
     formData.append('contrast', contrast.toString());
     formData.append('animationType', animationType);
-    formData.append('animationColor', animationColor)
+    formData.append('animationColor', animationColor);
 
     console.log(formData.get('file'));
 
     await dispatch(saveBackgroundData(formData));
-    navigate('/skins/background')    ;
+    navigate('/redactor/interface');
   };
 
   return (
@@ -104,14 +103,6 @@ export const BackgroundForm = () => {
           Remove Photo
         </Button>
       )}
-      <InputLabel sx={{ mt: 2, color: 'white' }}>Animation Color</InputLabel>
-      <input
-        type="color"
-        value={animationColor}
-        onChange={(event) => dispatch(setAnimationColor(event.target.value))}
-        style={{ width: '100%', height: '40px' }}
-      />
-
       {/* Выбор цвета */}
       <InputLabel sx={{ color: 'white' }}>Background Color</InputLabel>
       <input
@@ -139,6 +130,13 @@ export const BackgroundForm = () => {
         <MenuItem value="snow">Snow</MenuItem>
         <MenuItem value="blinkingDots">Blinking Dots</MenuItem>
       </Select>
+      <InputLabel sx={{ mt: 2, color: 'white' }}>Animation Color</InputLabel>
+      <input
+        type="color"
+        value={animationColor}
+        onChange={(event) => dispatch(setAnimationColor(event.target.value))}
+        style={{ width: '100%', height: '40px' }}
+      />
 
       {/* Ползунки */}
       <InputLabel sx={{ mt: 2, color: 'white' }}>Brightness</InputLabel>
@@ -173,7 +171,7 @@ export const BackgroundForm = () => {
           },
         }}
       >
-        ADD
+        go to interface
       </Button>
     </Box>
   );

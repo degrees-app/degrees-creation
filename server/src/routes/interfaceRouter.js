@@ -9,8 +9,6 @@ const upload = require('../middlewares/multer');
 // Сохранение изображения с параметрами
 interfaceRouter.post('/save', upload.single('file'), async (req, res) => {
   try {
-    console.log(req.file);
-    console.log(req.body);
     const { fontFamily, color } = req.body;
     if (!req.file) {
       return res.status(400).json({ error: 'Файл не загружен' });
@@ -33,7 +31,7 @@ interfaceRouter.post('/save', upload.single('file'), async (req, res) => {
 // Получение всех изображений
 interfaceRouter.get('/get', async (req, res) => {
   try {
-    const interface = await Interface.findAll();
+    const interface = await Interface.findAll({order: [['id', 'DESC']]});
     res.json(interface);
   } catch (error) {
     console.log(error);

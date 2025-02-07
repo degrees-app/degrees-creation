@@ -25,12 +25,12 @@ export default function SkinsPage() {
         >
           interface°
         </Typography>
-        <Typography
+        {/* <Typography
           className="link" // Применяем класс для стилей
           onClick={() => handleNavigation('/skins/background')}
         >
-          background°
-        </Typography>
+          background° */}
+        {/* </Typography> */}
         <Typography
           className="link" // Применяем класс для стилей
           onClick={() => handleNavigation('/skins/sound')}

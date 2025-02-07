@@ -138,13 +138,13 @@ const drawCanvasElements = (
 
   // 🔵 Полый круг в центре
   ctx.beginPath();
-  ctx.arc(canvas.width / 2, canvas.height * 0.5, 15, 0, Math.PI * 2);
+  ctx.arc(canvas.width / 2, canvas.height * 0.5, 17, 0, Math.PI * 2);
   ctx.strokeStyle = textStyle.color;
   ctx.lineWidth = 6;
   ctx.stroke();
 
   // 📏 Линия под центральным кругом
-  ctx.fillRect(canvas.width * 0.1, canvas.height * 0.55, canvas.width * 0.8, 2);
+  ctx.fillRect(canvas.width *0, canvas.height * 0.65, canvas.width * 1, 2);
 
   // 🔥 Нижняя панель элементов
   const panelY = canvas.height - 100;

@@ -20,15 +20,15 @@ export default function RedactorPage() {
         </Typography>
         <Typography
           className="link" // Применяем класс для стилей
-          onClick={() => handleNavigation('/redactor/interface')}
-        >
-          interface°
-        </Typography>
-        <Typography
-          className="link" // Применяем класс для стилей
           onClick={() => handleNavigation('/redactor/background')}
         >
           background°
+        </Typography>
+        <Typography
+          className="link" // Применяем класс для стилей
+          onClick={() => handleNavigation('/redactor/interface')}
+        >
+          interface°
         </Typography>
         <Typography
           className="link" // Применяем класс для стилей
