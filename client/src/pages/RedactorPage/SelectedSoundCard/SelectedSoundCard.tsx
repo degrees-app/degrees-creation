@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Container } from 'react-bootstrap';
+import { Card} from 'react-bootstrap';
 import style from '../SelectedSoundCard/SelectedSoundCardStyle.module.scss';
 import { SoundType } from '../../../entities/sound/types/soundTypes';
 import SoundCard from '../../../entities/sound/ui/SoundCard';

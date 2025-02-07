@@ -13,9 +13,23 @@ export const InterfaceSkinsPage = () => {
     fetchInterfaces();
   }, []);
 
+  type props = {
+    image: string;
+    color: string;
+    fontFamily: string;
+  };
+
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px', padding: '20px', justifyContent: 'center' }}>
-      {interfaces.map((intf, index) => (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(2, 1fr)',
+        gap: '20px',
+        padding: '20px',
+        justifyContent: 'center',
+      }}
+    >
+      {interfaces.map((intf:props, index) => (
         <div key={index} style={{ display: 'flex', justifyContent: 'center' }}>
           <img src={`/img/${intf.image}`} alt="Saved Canvas" width={300} height={600} />
         </div>

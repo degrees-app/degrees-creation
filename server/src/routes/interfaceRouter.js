@@ -23,10 +23,10 @@ interfaceRouter.post('/save', upload.single('file'), async (req, res) => {
       fontFamily,
       color,
     });
-    res.json(newInterface);
+    return res.json(newInterface);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: 'Ошибка сохранения' });
+    return res.status(500).json({ error: 'Ошибка сохранения' });
   }
 });
 

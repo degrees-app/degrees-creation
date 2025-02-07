@@ -173,7 +173,7 @@ export const BackgroundForm = () => {
           },
         }}
       >
-        add
+        ADD
       </Button>
     </Box>
   );

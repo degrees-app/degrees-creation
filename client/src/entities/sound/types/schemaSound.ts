@@ -5,4 +5,5 @@ export const soundSchema = z.object({
   type: z.string(),
   url: z.string(),
   categoryId: z.number(),
+  name:z.string().optional()
 });
