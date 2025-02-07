@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { RootState, AppDispatch } from '../../app/store';
 import {
   setBackgroundColor,
@@ -15,7 +15,7 @@ import { Box, Button, InputLabel, Slider, Select, MenuItem } from '@mui/material
 
 export const BackgroundForm = () => {
   const dispatch = useDispatch<AppDispatch>();
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {
@@ -72,7 +72,7 @@ export const BackgroundForm = () => {
     console.log(formData.get('file'));
 
     await dispatch(saveBackgroundData(formData));
-    // navigate('/skins/background')    ;
+    navigate('/skins/background')    ;
   };
 
   return (

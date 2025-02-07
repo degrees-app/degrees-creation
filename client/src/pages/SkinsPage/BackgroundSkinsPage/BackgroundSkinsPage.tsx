@@ -13,6 +13,9 @@ export const BackgroundSkinsPage = () => {
     fetchBackgrounds();
   }, []);
 
+
+
+// в див передавать пропс из frame
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px', padding: '20px', justifyContent: 'center' }}>
       {backgrounds.map((intf, index) => (

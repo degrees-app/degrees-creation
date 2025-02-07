@@ -2,17 +2,21 @@ import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../app/store';
 
-export const CanvasPhoneFrame = () => {
+export const CanvasPhoneFrame = ({ phoneFrame }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const imgRef = useRef(new Image());
   // 🟢 Получаем данные из Redux
+
+  // Вынести выше и принять пропсом
   const textStyle = useSelector((state: RootState) => state.interface.textStyle);
   const degrees = useSelector((state: RootState) => state.interface.degrees);
   const number1 = useSelector((state: RootState) => state.interface.number1);
   const number2 = useSelector((state: RootState) => state.interface.number2);
-
   const backgroundImage = useSelector(
     (state: RootState) => state.background.backgroundImage,
+  );
+  const backgroundColor = useSelector(
+    (state: RootState) => state.background.backgroundColor,
   );
 
   useEffect(() => {
@@ -21,9 +25,6 @@ export const CanvasPhoneFrame = () => {
     }
   }, [backgroundImage]);
 
-  const backgroundColor = useSelector(
-    (state: RootState) => state.background.backgroundColor,
-  );
   const brightness = useSelector((state: RootState) => state.background.brightness);
   const contrast = useSelector((state: RootState) => state.background.contrast);
   const animationType = useSelector((state: RootState) => state.background.animationType); // ✅ Получаем анимацию

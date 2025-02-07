@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../../app/store';
 import { setTextStyle } from '../../entities/interface/model/interfaceSlice';
 import { Box, Button, Select, MenuItem, InputLabel } from '@mui/material';
+import { useNavigate } from 'react-router';
 
 // Доступные стили шрифтов
 const fontFamilies = [
@@ -24,6 +25,7 @@ const fontWeights = [
 ];
 
 export const InterfaceForm = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const { textStyle } = useSelector((state: RootState) => state.interface);
 
@@ -66,7 +68,7 @@ export const InterfaceForm = () => {
           method: 'POST',
           body: formData, // 🔥 Отправляем `FormData`, а не JSON
         });
-
+        navigate('/skins/background') 
         if (!response.ok) throw new Error('Ошибка при сохранении');
 
         console.log('✅ Canvas успешно сохранен!');
