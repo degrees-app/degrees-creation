@@ -15,7 +15,6 @@ interface Params {
   color: number;
   shape: string;
   opacity: number;
-  author: string;
 }
 
 export const BallRedactorPage: React.FC = () => {
@@ -25,7 +24,6 @@ export const BallRedactorPage: React.FC = () => {
     color: 0x4080ff,
     shape: 'Sphere',
     opacity: 1.0,
-    author: '', // Новый параметр для имени автора
   });
   
   const dispatch = useAppDispatch();
@@ -146,24 +144,11 @@ export const BallRedactorPage: React.FC = () => {
         matLine.transparent = val < 1.0; // Установить прозрачность
       });
 
-      gui.add(params, 'author').onChange(function (val) {
-        // Проверка длины имени автора
-        if (val.length === 0) {
-          console.warn('Author name must not be empty.');
-        } else {
-          console.log('Author name:', val); // Логируем имя автора
-        }
-      });
-
       gui
         .add(
           {
             add: () => {
               // Проверка длины имени автора перед добавлением
-              if (params.author.length === 0) {
-                console.warn('Author name must not be empty.');
-                return; // Прекращаем выполнение, если имя автора некорректно
-              }
 
               const initialPosts = {
                 id:0,
@@ -171,7 +156,6 @@ export const BallRedactorPage: React.FC = () => {
                 color: params.color,
                 shape: params.shape,
                 opacity: params.opacity,
-                author: params.author, // Добавляем автора в пост
               };
 
               dispatch(CreateBallCard(initialPosts));
@@ -180,7 +164,7 @@ export const BallRedactorPage: React.FC = () => {
           },
           'add',
         )
-        .name('add');
+        .name('ADD');
 
         let geometry: THREE.BufferGeometry;
 

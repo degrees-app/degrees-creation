@@ -15,8 +15,12 @@ export default function SoundRedactorPage(): React.JSX.Element {
   const { data: categories, isSuccess: categoriesSuccess } =
     useGetCategoriesQuery(undefined);
   const { selectedSounds, setSelectedSounds } = useSoundContext();
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState<SoundType | null|props>(null);
   const [currentSelectedSounds, setCurrentSelectedSounds] = useState<SoundType[]>([]);
+  type props = {
+    id:number;
+    name: string;
+  }
 
   if (!soundsSuccess || !categoriesSuccess) {
     return <>Loading...</>;
@@ -46,6 +50,7 @@ export default function SoundRedactorPage(): React.JSX.Element {
   };
 
   const hasSelectedCategory = selectedCategory !== null;
+
 
   return (
     <div className={style.container}>
@@ -116,8 +121,8 @@ export default function SoundRedactorPage(): React.JSX.Element {
           </div>
         </div>
       )}
-      <button className={style.button} style={{}} onClick={handleAddSounds}>
-       add
+      <button className={style.button}  onClick={handleAddSounds}>
+       ADD
       </button>
     </div>
   );

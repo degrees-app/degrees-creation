@@ -9,8 +9,6 @@ interface BallCardProps {
   card: BallObjectType;
 }
 
-
-
 export const BallCard: React.FC<BallCardProps> = ({ card }) => {
   const containerId = `three-container-${card.id}`;
 
@@ -20,7 +18,7 @@ export const BallCard: React.FC<BallCardProps> = ({ card }) => {
       scene: THREE.Scene,
       camera: THREE.PerspectiveCamera;
     let matLine: LineMaterial;
-    let geo: THREE.BufferGeometry ;
+    let geo: THREE.BufferGeometry;
 
     init();
 
@@ -111,25 +109,11 @@ export const BallCard: React.FC<BallCardProps> = ({ card }) => {
 
   return (
     <main>
-    <div className="triD">
-      <div>
-        <div id={containerId} />
+      <div className="triD">
+        <div>
+          <div id={containerId} />
+        </div>
       </div>
-      <p
-        className="author"
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          textDecoration: 'none',
-          color: 'white',
-          fontSize: '20px',
-        }}
-      >
-        author: {card.author}
-      </p>
-
-    </div>
-
     </main>
   );
 };

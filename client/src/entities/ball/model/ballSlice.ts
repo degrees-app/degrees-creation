@@ -20,7 +20,6 @@ const initialState: ballSliceType = {
     color: 0x4080ff,
     shape: 'Sphere',
     opacity: 1.0,
-    author: '',
   } as ParamsObjectType,
   oneball: {} as BallObjectType,
   loading: false,

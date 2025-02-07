@@ -11,6 +11,7 @@ export default function SoundCard({ sound }: SoundCardProps): React.JSX.Element 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  console.log(isPlaying);
   useEffect(() => {
     console.log(sound);
     audioRef.current = new Audio(sound.url);
@@ -25,7 +26,7 @@ export default function SoundCard({ sound }: SoundCardProps): React.JSX.Element 
         audioRef.current = null;
       }
     };
-  }, [sound.url]);
+  }, [sound.url,sound]);
 
   const handlePlay = () => {
     if (audioRef.current) {
