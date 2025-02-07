@@ -14,7 +14,6 @@ export const BackgroundRedactorPage = () => {
         padding: 3,
         justifyContent: 'center', // Центрирование по горизонтали
         alignItems: 'center', // Центрирование по вертикали
-        height: '100vh', // Занять всю высоту экрана
       }}
     >
       <BackgroundForm />

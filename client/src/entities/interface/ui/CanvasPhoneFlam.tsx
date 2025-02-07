@@ -93,6 +93,19 @@ export const CanvasPhoneFrame = ({ phoneFrame }) => {
   );
 };
 
+interface TextStyle {
+  color: string;
+  fontWeight: string;
+  fontFamily: string;
+}
+
+// Определяем интерфейс для параметров
+interface CanvasElementsProps {
+  textStyle: TextStyle;
+  degrees: string; // Предполагаем, что degrees - это строка
+  number1: number | string; // Предполагаем, что number1 - это число
+  number2: number | string; // Предполагаем, что number2 - это число
+}
 // 🎨 Функция отрисовки элементов (чтобы они были поверх фона)
 const drawCanvasElements = (
   ctx: CanvasRenderingContext2D,
@@ -102,7 +115,7 @@ const drawCanvasElements = (
     degrees,
     number1,
     number2,
-  }: { textStyle: any; degrees: any; number1: any; number2: any },
+  }:  CanvasElementsProps
 ) => {
   // 🔲 Границы экрана
   ctx.strokeStyle = 'white';

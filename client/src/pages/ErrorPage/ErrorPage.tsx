@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function ErrorPage() {
   const handleRedirect = () => {
     window.location.href = '/'; // Перенаправление на главную страницу

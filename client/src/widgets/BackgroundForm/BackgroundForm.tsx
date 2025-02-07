@@ -168,9 +168,12 @@ export const BackgroundForm = () => {
           backgroundColor: 'black',
           color: 'white',
           border: '1px solid white',
+          '&:hover': {
+            backgroundColor: '#333', // Цвет при наведении
+          },
         }}
       >
-        Add
+        ADD
       </Button>
     </Box>
   );

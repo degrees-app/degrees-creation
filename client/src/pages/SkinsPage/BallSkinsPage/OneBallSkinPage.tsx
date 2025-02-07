@@ -169,9 +169,6 @@ export const OneBallSkinPage: React.FC = () => {
         }}
       />
       <div />
-      <p style={{ display: 'flex', color: 'white', justifyContent: 'center', width: '1200px' , fontSize:'25px'}}>
-        author: {oneball?.author}
-      </p>
     </div>
   );
 };
