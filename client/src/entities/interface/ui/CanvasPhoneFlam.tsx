@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../app/store';
 
-export const CanvasPhoneFrame = ({ phoneFrame }) => {
+export const CanvasPhoneFrame = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const imgRef = useRef(new Image());
   // 🟢 Получаем данные из Redux
